@@ -1,10 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import {
-  CheckCircle2, Sparkles, FlameKindling, Scroll, Sword,
-  ArrowLeft, Flame, X, Trophy, Gamepad2,
-} from "lucide-react";
+import { CircleCheck as CheckCircle2, Sparkles, FlameKindling, Scroll, Sword, ArrowLeft, Flame, X, Trophy, Gamepad2 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { LangToggle } from "@/components/lang-toggle";
 import { SupportBanner } from "@/components/support-banner";
@@ -35,7 +32,7 @@ function CheckTile({
   return (
     <div
       onClick={onInfo}
-      className={`flex items-start gap-2.5 rounded-xl p-3 transition-all duration-200 bg-slate-900/80 backdrop-blur-md border ${isDone ? "border-cyan-500/50" : "border-slate-700/50"} ${onInfo ? "cursor-pointer hover:border-cyan-500/40" : ""}`}>
+      className={`flex items-start gap-2.5 rounded-lg p-3 transition-all duration-200 bg-slate-900/80 backdrop-blur-md border ${isDone ? "border-cyan-500/50" : "border-slate-700/50"} ${onInfo ? "cursor-pointer hover:border-cyan-500/40" : ""}`}>
       <button
         type="button"
         onClick={(e) => { e.stopPropagation(); onToggle(); }}
@@ -236,24 +233,23 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
                 : "Check each boss after defeating it at least once."}
             </p>
 
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="grid gap-2 sm:grid-cols-2">
               {bosses.map((boss) => {
                 const isDone = !!completed[boss.id];
                 return (
                   <div key={boss.id}
                     onClick={() => { setBossDetailBoss(boss); setBossDetailOpen(true); }}
-                    className={`rounded-2xl p-4 flex items-center gap-4 transition-all duration-200 bg-slate-900/80 backdrop-blur-md border cursor-pointer hover:border-cyan-500/40 ${isDone ? "border-cyan-500/50" : "border-slate-700/50"}`}>
+                    className={`rounded-lg p-3 flex items-center gap-2.5 transition-all duration-200 bg-slate-900/80 backdrop-blur-md border cursor-pointer hover:border-cyan-500/40 ${isDone ? "border-cyan-500/50" : "border-slate-700/50"}`}>
                     <button type="button"
                       onClick={(e) => { e.stopPropagation(); toggle(boss.id); }}
-                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-2xl transition-all border-2 ${isDone ? "border-cyan-500 bg-cyan-500/20" : "border-slate-600 bg-slate-800/50"}`}>
-                      {isDone ? <CheckCircle2 className="h-6 w-6 text-cyan-400" /> : boss.emoji}
+                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-lg transition-all border-2 ${isDone ? "border-cyan-500 bg-cyan-500 text-white" : "border-slate-600"}`}>
+                      {isDone ? <CheckCircle2 className="h-3.5 w-3.5" /> : <span className="text-base">{boss.emoji}</span>}
                     </button>
                     <div className="flex-1 min-w-0">
-                      <p className={`font-black text-sm leading-tight ${isDone ? "text-slate-100" : "text-slate-300"}`}>
+                      <p className={`font-semibold text-sm leading-tight ${isDone ? "text-slate-100" : "text-slate-300"}`}>
                         {l(boss.name)}
                       </p>
-                      <p className="text-[11px] mt-0.5 font-medium text-slate-500">{l(boss.zone)}</p>
-                      <p className="text-[11px] mt-1 leading-snug text-slate-400">{l(boss.description)}</p>
+                      <p className="text-[11px] mt-0.5 leading-tight text-slate-500 line-clamp-1">{l(boss.zone)}</p>
                     </div>
                   </div>
                 );
@@ -279,7 +275,7 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
                   ? "Accomplissez ces proph\u00e9ties pour la compl\u00e9tion totale."
                   : "Complete these prophecies for full completion."}
               </p>
-              <div className="grid gap-2.5 sm:grid-cols-2">
+              <div className="grid gap-2 sm:grid-cols-2">
                 {prophecies.map((prop) => (
                   <CheckTile key={prop.id} id={prop.id}
                     label={l(prop.title)}
@@ -306,7 +302,7 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
                   ? "Pr\u00e9parez ces incantations pour les am\u00e9liorations permanentes."
                   : "Brew these incantations for permanent Crossroads upgrades."}
               </p>
-              <div className="grid gap-2.5 sm:grid-cols-2">
+              <div className="grid gap-2 sm:grid-cols-2">
                 {incantations.map((incant) => (
                   <CheckTile key={incant.id} id={incant.id}
                     label={l(incant.title)}
@@ -333,7 +329,7 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
                 : "Unlock every aspect and reach Pact of Punishment heat milestones."}
             </p>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {weapons.map((weapon) => {
                 const heatGroup    = weaponHeats.find((g) => g.weaponId === weapon.id)!;
                 const aspectsDoneW = weapon.aspects.filter((a) => !!completed[a.id]).length;
@@ -342,7 +338,7 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
 
                 return (
                   <div key={weapon.id}
-                    className={`rounded-2xl overflow-hidden bg-slate-900/80 backdrop-blur-md border ${allAspects ? "border-cyan-500/50" : "border-slate-700/50"}`}>
+                    className={`rounded-lg overflow-hidden bg-slate-900/80 backdrop-blur-md border ${allAspects ? "border-cyan-500/50" : "border-slate-700/50"}`}>
                     <div className={`flex items-center gap-3 px-4 py-3 border-b border-slate-700/50 ${allAspects ? "bg-cyan-900/20" : ""}`}>
                       <span className="text-xl">{weapon.emoji}</span>
                       <h3 className="flex-1 font-black text-sm text-slate-100">{l(weapon.name)}</h3>
