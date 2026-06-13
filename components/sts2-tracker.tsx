@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import { CircleCheck as CheckCircle2, Sparkles, Eye, Gem, Users, ArrowLeft, Trophy, X, Gamepad2 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { LangToggle } from "@/components/lang-toggle";
-import { SupportBanner } from "@/components/support-banner";
 import { loadFromStorage, saveToStorage } from "@/lib/storage";
 import {
   sts2Characters, sts2Secrets, sts2Relics,
@@ -133,7 +132,6 @@ function Sts2DetailModal({
                   </div>
                   <p className="text-sm text-slate-300 leading-relaxed whitespace-pre-line">{l(item.solution)}</p>
                 </div>
-                <SupportBanner gameId="sts2" className="mt-2" />
               </>
             )}
           </div>
@@ -317,7 +315,6 @@ export function Sts2Tracker({ onBack }: Sts2TrackerProps) {
                   onInfo={() => { setDetailItem(item); setDetailOpen(true); }} />
               ))}
             </div>
-            <div className="pt-6"><SupportBanner gameId="sts2" /></div>
           </div>
         )}
 

@@ -5,7 +5,6 @@ import { X, CircleCheck as CheckCircle2, MapPin, Gamepad2, Trophy, TrendingUp, L
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/lib/language-context";
 import type { Lang } from "@/lib/i18n";
-import { SupportBanner } from "@/components/support-banner";
 import { loc, locArr, ZONES, type SecondaryMission } from "@/lib/missions";
 import { getActivityTip, type Activity } from "@/lib/activities";
 
@@ -223,7 +222,6 @@ function MissionContent({
               </div>
             )}
 
-            <SupportBanner gameId="gta5" className="mt-2" />
           </>
         )}
       </div>
@@ -400,7 +398,6 @@ function ActivityContent({
               </p>
             )}
 
-            <SupportBanner gameId="gta5" className="mt-2" />
           </>
         )}
       </div>

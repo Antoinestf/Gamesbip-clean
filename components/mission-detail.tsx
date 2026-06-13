@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, CheckCircle2, Circle, MapPin, Gamepad2, Trophy, TrendingUp } from "lucide-react";
+import { X, CircleCheck as CheckCircle2, Circle, MapPin, Gamepad2, Trophy, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/lib/language-context";
-import { SupportBanner } from "@/components/support-banner";
 import { loc, locArr, type Mission } from "@/lib/missions";
 
 export type DetailTab = "details" | "solution";
@@ -226,7 +225,6 @@ export function MissionDetail({
                   </ol>
                 </div>
 
-                <SupportBanner gameId="gta5" className="mt-2" />
               </>
             )}
           </div>

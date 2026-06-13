@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { X, CircleCheck as CheckCircle2, Scroll, FlameKindling, Sword, Trophy, Gamepad2 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
-import { SupportBanner } from "@/components/support-banner";
 import type { HadesProphecy, HadesIncantation, HadesWeapon, WeaponAspect } from "@/lib/data/hades2";
 
 type HadesDetailItem =
@@ -246,7 +245,6 @@ export function HadesDetail({ item, open, onOpenChange, completed, onToggleCompl
                     )}
                   </>
                 )}
-                <SupportBanner gameId="hades2" className="mt-2" />
               </>
             )}
           </div>

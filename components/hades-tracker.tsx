@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import { CircleCheck as CheckCircle2, Sparkles, FlameKindling, Scroll, Sword, ArrowLeft, Flame, X, Trophy, Gamepad2 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { LangToggle } from "@/components/lang-toggle";
-import { SupportBanner } from "@/components/support-banner";
 import { HadesDetail } from "@/components/hades-detail";
 import { loadFromStorage, saveToStorage } from "@/lib/storage";
 import {
@@ -286,7 +285,6 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
                 );
               })}
             </div>
-            <div className="pt-6"><SupportBanner gameId="hades2" /></div>
           </div>
         )}
 
@@ -714,7 +712,6 @@ function BossDetail({
                     {lang === "en" ? "No detailed walkthrough available yet." : "Aucun guide d\u00e9taill\u00e9 disponible pour le moment."}
                   </p>
                 )}
-                <SupportBanner gameId="hades2" className="mt-2" />
               </>
             )}
           </div>

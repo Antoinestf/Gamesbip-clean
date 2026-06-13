@@ -4,6 +4,7 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/language-context";
+import { GlobalFooter } from "@/components/global-footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -50,6 +51,7 @@ gtag('config', 'G-WZXFYLF0Z8');`,
       <body className={inter.className}>
         <LanguageProvider>
           {children}
+          <GlobalFooter />
         </LanguageProvider>
         <Analytics />
       </body>
