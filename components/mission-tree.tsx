@@ -379,7 +379,7 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                     <h3 className="flex-1 font-bold text-slate-100">{label}</h3>
                     <span className="font-mono text-xs text-slate-400">{zoneDone}/{missions.length}</span>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-4">
                     {missions.map((mission) => (
                       <MissionNode key={mission.id} mission={mission}
                         completed={!!completed[mission.id]}
@@ -410,7 +410,7 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                     <TrendingUp className="h-3.5 w-3.5" />
                     {lang === "en" ? "Lester Assassinations" : "Assassinats de Lester"}
                   </h3>
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     {lesterMissions.map((sm) => (
                       <SecondaryMissionCard key={sm.id} sm={sm} completed={completed}
                         setCompleted={setCompleted} lang={lang} t={t}
@@ -434,7 +434,7 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                     <Gamepad2 className="h-3.5 w-3.5 text-cyan-400" />
                     {protLabel}
                   </h3>
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     {protMissions.map((sm) => (
                       <SecondaryMissionCard key={sm.id} sm={sm} completed={completed}
                         setCompleted={setCompleted} lang={lang} t={t}
@@ -457,7 +457,7 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                     <Gamepad2 className="h-3.5 w-3.5 text-cyan-400" />
                     {lang === "en" ? "All Characters" : "Tous les personnages"}
                   </h3>
-                  <div className="space-y-3">
+                  <div className="space-y-4">
                     {allMissions.map((sm) => (
                       <SecondaryMissionCard key={sm.id} sm={sm} completed={completed}
                         setCompleted={setCompleted} lang={lang} t={t}
@@ -488,7 +488,7 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                       {lang === "en" ? "Reward: " : "R\u00e9compense: "}{catReward}
                     </p>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-4">
                     {cat.items.map((item) => {
                       const key    = `ci-${item.id}`;
                       const isDone = !!completed[key];
@@ -496,13 +496,13 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                         <div key={item.id}
                           onClick={() => { setCollectibleDetailItem(item); setCollectibleDetailOpen(true); }}
                           className={cn(
-                            "flex w-full items-start gap-3 rounded-lg border p-3 text-left transition-all bg-slate-900/80 backdrop-blur-md cursor-pointer hover:border-cyan-500/40",
+                            "flex w-full items-start gap-3 rounded-lg border p-4 text-left transition-all bg-slate-900/80 backdrop-blur-md cursor-pointer hover:border-cyan-500/40",
                             isDone ? "border-cyan-500/50" : "border-slate-700/50"
                           )}>
                           <button type="button"
                             onClick={(e) => { e.stopPropagation(); setCompleted((p) => ({ ...p, [key]: !p[key] })); }}
                             className={cn(
-                              "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 transition-all mt-0.5 touch-manipulation",
+                              "flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 transition-all mt-0.5 touch-manipulation",
                               isDone ? "border-cyan-500 bg-cyan-500 text-white" : "border-slate-600"
                             )}>
                             {isDone && <CheckCircle2 className="h-3.5 w-3.5" />}
@@ -546,7 +546,7 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                   <h3 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 mt-4 first:mt-0">
                     {activityCategoryLabels[cat]}
                   </h3>
-                  <div className="space-y-2">
+                  <div className="space-y-4">
                     {catActivities.map((activity) => {
                       const key    = `act-${activity.id}`;
                       const isDone = !!completed[key];

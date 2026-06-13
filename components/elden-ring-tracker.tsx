@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X, Trophy, Gamepad2, ArrowLeft, Sparkles, CheckCircle2 } from "lucide-react";
+import { X, Trophy, Gamepad2, ArrowLeft, Sparkles, CircleCheck as CheckCircle2 } from "lucide-react";
 import { loadFromStorage, saveToStorage } from "@/lib/storage";
 import { LangToggle } from "@/components/lang-toggle";
 
@@ -290,7 +290,7 @@ export default function EldenRingTracker({ onBack }: { onBack: () => void }) {
 
       {/* ── Quest list ── */}
       <div className="mx-auto max-w-6xl px-4 pb-28 pt-5">
-        <div className="space-y-3">
+        <div className="space-y-4">
           {filteredItems.length > 0 ? (
             filteredItems.map(item => {
               const isDone = !!completed[item.id];
@@ -298,7 +298,7 @@ export default function EldenRingTracker({ onBack }: { onBack: () => void }) {
                 <div
                   key={item.id}
                   onClick={() => { setSelectedQuestId(item.id); setActiveTab('details'); }}
-                  className="flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all duration-200 hover:scale-[1.01]"
+                  className="flex items-start gap-3 rounded-xl border p-5 cursor-pointer transition-all duration-200 hover:scale-[1.01]"
                   style={{
                     backgroundColor: '#0f172a',
                     borderColor: isDone ? 'rgba(0,208,244,0.4)' : '#1e293b',

@@ -23,7 +23,7 @@ export function MissionNode({ mission, completed, active, onClick }: MissionNode
     <div
       onClick={onClick}
       className={cn(
-        "group relative flex w-full items-center gap-2.5 rounded-lg border p-3 transition-all cursor-pointer",
+        "group relative flex w-full items-center gap-3 rounded-lg border p-4 transition-all cursor-pointer",
         "bg-slate-900/80 backdrop-blur-md",
         completed
           ? "border-cyan-500/50"

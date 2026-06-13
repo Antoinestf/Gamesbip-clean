@@ -1,10 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import {
-  CheckCircle2, Sparkles, Eye, Gem, Users,
-  ArrowLeft, Trophy, X, Gamepad2,
-} from "lucide-react";
+import { CircleCheck as CheckCircle2, Sparkles, Eye, Gem, Users, ArrowLeft, Trophy, X, Gamepad2 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { LangToggle } from "@/components/lang-toggle";
 import { SupportBanner } from "@/components/support-banner";
@@ -157,7 +154,7 @@ function CheckTile({
   return (
     <div
       onClick={onInfo}
-      className={`flex items-start gap-2.5 rounded-xl p-3 transition-all duration-200 bg-slate-900/80 backdrop-blur-md border ${isDone ? "border-cyan-500/50" : "border-slate-700/50"} ${onInfo ? "cursor-pointer hover:border-cyan-500/40" : ""}`}>
+      className={`flex items-start gap-3 rounded-xl p-4 transition-all duration-200 bg-slate-900/80 backdrop-blur-md border ${isDone ? "border-cyan-500/50" : "border-slate-700/50"} ${onInfo ? "cursor-pointer hover:border-cyan-500/40" : ""}`}>
       <button type="button" onClick={(e) => { e.stopPropagation(); onToggle(); }}
         className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-all touch-manipulation border-2 ${isDone ? "border-cyan-500 bg-cyan-500" : "border-slate-600"}`}
         aria-label={isDone ? "Marquer comme non terminé" : "Marquer comme terminé"}>
@@ -286,7 +283,7 @@ export function Sts2Tracker({ onBack }: Sts2TrackerProps) {
                 ? "Débloquez et maîtrisez chaque personnage jouable."
                 : "Unlock and master every playable character."}
             </p>
-            <div className="grid gap-2.5 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2">
               {sts2Characters.map((item) => (
                 <CheckTile key={item.id}
                   label={l(item.title)}
@@ -311,7 +308,7 @@ export function Sts2Tracker({ onBack }: Sts2TrackerProps) {
                 ? "Événements et salles cachés — cochez quand vous les avez découverts."
                 : "Hidden events and rooms — check when discovered."}
             </p>
-            <div className="grid gap-2.5 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2">
               {sts2Secrets.map((item) => (
                 <CheckTile key={item.id}
                   label={l(item.title)}
@@ -335,7 +332,7 @@ export function Sts2Tracker({ onBack }: Sts2TrackerProps) {
                 ? "Les synergies qui définissent les meilleures builds — cochez quand maîtrisé."
                 : "The synergies that define the strongest builds — check when mastered."}
             </p>
-            <div className="grid gap-2.5 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2">
               {sts2Relics.map((item) => (
                 <CheckTile key={item.id}
                   label={l(item.title)}
