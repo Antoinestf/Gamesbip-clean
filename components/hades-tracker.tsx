@@ -8,8 +8,9 @@ import { SupportBanner } from "@/components/support-banner";
 import { HadesDetail } from "@/components/hades-detail";
 import { loadFromStorage, saveToStorage } from "@/lib/storage";
 import {
-  prophecies, incantations, weapons, bosses, weaponHeats,
-  totalProphecies, totalIncantations, totalAspects, totalBosses, totalHeatItems, totalHades,
+  prophecies, incantations, weapons, bosses, weaponHeats, familiars, souvenirs,
+  totalProphecies, totalIncantations, totalAspects, totalBosses, totalHeatItems,
+  totalFamiliars, totalSouvenirs, totalHades,
   type HadesProphecy, type HadesIncantation, type WeaponAspect, type HadesWeapon,
 } from "@/lib/data/hades2";
 
@@ -133,12 +134,14 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
     : detailItem.kind === "incantation" ? detailItem.data.id
     : detailItem.data.id;
 
-  const bossesDone  = useMemo(() => bosses.filter((b) => !!completed[b.id]).length, [completed]);
-  const propDone    = useMemo(() => prophecies.filter((p) => !!completed[p.id]).length, [completed]);
-  const incantDone  = useMemo(() => incantations.filter((i) => !!completed[i.id]).length, [completed]);
-  const aspectsDone = useMemo(() => weapons.flatMap((w) => w.aspects).filter((a) => !!completed[a.id]).length, [completed]);
-  const heatDone    = useMemo(() => weaponHeats.flatMap((g) => g.milestones).filter((m) => !!completed[m.id]).length, [completed]);
-  const totalDone   = bossesDone + propDone + incantDone + aspectsDone + heatDone;
+  const bossesDone    = useMemo(() => bosses.filter((b) => !!completed[b.id]).length, [completed]);
+  const propDone      = useMemo(() => prophecies.filter((p) => !!completed[p.id]).length, [completed]);
+  const incantDone    = useMemo(() => incantations.filter((i) => !!completed[i.id]).length, [completed]);
+  const aspectsDone   = useMemo(() => weapons.flatMap((w) => w.aspects).filter((a) => !!completed[a.id]).length, [completed]);
+  const heatDone      = useMemo(() => weaponHeats.flatMap((g) => g.milestones).filter((m) => !!completed[m.id]).length, [completed]);
+  const familiarsDone = useMemo(() => familiars.filter((f) => !!completed[f.id]).length, [completed]);
+  const souvenirsDone = useMemo(() => souvenirs.filter((s) => !!completed[s.id]).length, [completed]);
+  const totalDone     = bossesDone + propDone + incantDone + aspectsDone + heatDone + familiarsDone + souvenirsDone;
   const globalPct   = totalHades > 0 ? Math.round((totalDone / totalHades) * 100) : 0;
 
   const l = (b: { fr: string; en: string }) => b[lang as "fr" | "en"];
@@ -159,8 +162,8 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
     {
       id: "objectifs", labelFr: "Prophéties Majeures", labelEn: "Major Prophecies",
       icon: <Scroll className="h-4 w-4" />,
-      pct: (totalProphecies + totalIncantations) > 0
-        ? Math.round(((propDone + incantDone) / (totalProphecies + totalIncantations)) * 100) : 0,
+      pct: (totalProphecies + totalIncantations + totalFamiliars + totalSouvenirs) > 0
+        ? Math.round(((propDone + incantDone + familiarsDone + souvenirsDone) / (totalProphecies + totalIncantations + totalFamiliars + totalSouvenirs)) * 100) : 0,
     },
     {
       id: "armes", labelFr: "Armes & Chaleur", labelEn: "Weapons & Heat",
@@ -340,10 +343,60 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
                 ))}
               </div>
             </div>
+
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-base">🐾</span>
+                <h2 className="text-base font-extrabold uppercase tracking-wide text-slate-100">
+                  {lang === "fr" ? "Familiers" : "Familiars"}
+                </h2>
+                <span className="text-xs font-bold text-slate-400">{familiarsDone}/{totalFamiliars}</span>
+              </div>
+              <p className="text-sm mb-4 text-slate-300">
+                {lang === "fr"
+                  ? "Obtenez ces compagnons uniques au Carrefour."
+                  : "Obtain these unique companions at the Crossroads."}
+              </p>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {familiars.map((fam) => (
+                  <CheckTile key={fam.id} id={fam.id}
+                    label={l(fam.name)}
+                    sublabel={l(fam.how_to)}
+                    alertType={fam.alertType}
+                    isDone={!!completed[fam.id]}
+                    onToggle={() => toggle(fam.id)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-base">🎁</span>
+                <h2 className="text-base font-extrabold uppercase tracking-wide text-slate-100">
+                  {lang === "fr" ? "Souvenirs" : "Keepsakes"}
+                </h2>
+                <span className="text-xs font-bold text-slate-400">{souvenirsDone}/{totalSouvenirs}</span>
+              </div>
+              <p className="text-sm mb-4 text-slate-300">
+                {lang === "fr"
+                  ? "Objets uniques offerts par certains personnages."
+                  : "Unique items gifted by specific characters."}
+              </p>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {souvenirs.map((sov) => (
+                  <CheckTile key={sov.id} id={sov.id}
+                    label={l(sov.name)}
+                    sublabel={l(sov.source)}
+                    alertType={sov.alertType}
+                    isDone={!!completed[sov.id]}
+                    onToggle={() => toggle(sov.id)}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         )}
-
-        {/* ARMES & CHALEUR TAB */}
         {activeTab === "armes" && (
           <div>
             <h2 className="text-xl font-extrabold uppercase tracking-wide mb-1 text-slate-100">
@@ -367,8 +420,15 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
                     className={`rounded-lg overflow-hidden bg-slate-900/80 backdrop-blur-md border ${allAspects ? "border-cyan-500/50" : "border-slate-700/50"}`}>
                     <div className={`flex items-center gap-3 px-4 py-3 border-b border-slate-700/50 ${allAspects ? "bg-cyan-900/20" : ""}`}>
                       <span className="text-xl">{weapon.emoji}</span>
-                      <h3 className="flex-1 font-black text-sm text-slate-100">{l(weapon.name)}</h3>
-                      <div className="flex items-center gap-2 text-[10px] font-bold">
+                      <div className="flex-1 min-w-0 flex items-center gap-1.5 flex-wrap">
+                        <h3 className="font-black text-sm text-slate-100">{l(weapon.name)}</h3>
+                        {weapon.alertType === 'item' && (
+                          <span className="bg-red-500/20 text-red-400 text-[9px] px-1.5 py-0.5 rounded font-medium tracking-wide shrink-0">
+                            Objet unique
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2 text-[10px] font-bold shrink-0">
                         <span className="text-cyan-400">Aspects {aspectsDoneW}/{weapon.aspects.length}</span>
                         <span className="text-slate-400">Heat {heatDoneW}/{heatGroup.milestones.length}</span>
                       </div>

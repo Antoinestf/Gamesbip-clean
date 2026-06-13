@@ -34,6 +34,7 @@ export interface HadesWeapon {
   description: BiText;
   aspects:     WeaponAspect[];
   masterGuide?: BiText;
+  alertType?:  'item' | 'quest';
 }
 
 // ─── Bosses ───────────────────────────────────────────────────────────────────
@@ -53,6 +54,7 @@ export const bosses: HadesBoss[] = [
   {
     id: "boss-hecate",
     emoji: "🌙",
+    alertType: "quest",
     name:          { fr: "Hécate",                   en: "Hecate"                     },
     zone:          { fr: "Érèbe",                    en: "Erebus"                     },
     description:   { fr: "Gardienne des Carrefours — combat d'entraînement obligatoire.",
@@ -64,6 +66,7 @@ export const bosses: HadesBoss[] = [
   {
     id: "boss-scylla",
     emoji: "🎵",
+    alertType: "quest",
     name:          { fr: "Scylla & les Sirènes",     en: "Scylla & the Sirens"        },
     zone:          { fr: "Océanus",                  en: "Oceanus"                    },
     description:   { fr: "Trio de monstres marins — phases de chant et attaques à distance.",
@@ -75,6 +78,7 @@ export const bosses: HadesBoss[] = [
   {
     id: "boss-infernal",
     emoji: "🐕",
+    alertType: "quest",
     name:          { fr: "Bête Infernale (Cerbère)", en: "Infernal Beast (Cerberus)"  },
     zone:          { fr: "Champs des Lamentations",  en: "Fields of Mourning"         },
     description:   { fr: "Gardien des Enfers corrompu — attaques de zone massives.",
@@ -98,6 +102,7 @@ export const bosses: HadesBoss[] = [
   {
     id: "boss-polyphemus",
     emoji: "👁️",
+    alertType: "quest",
     name:          { fr: "Polyphème",                en: "Polyphemus"                 },
     zone:          { fr: "Cité d'Éphyra",            en: "City of Ephyra"             },
     description:   { fr: "Cyclope colossal — absorbe les dégâts de zone et riposte massivement.",
@@ -109,6 +114,7 @@ export const bosses: HadesBoss[] = [
   {
     id: "boss-eris",
     emoji: "🌑",
+    alertType: "quest",
     name:          { fr: "Éris",                     en: "Eris"                       },
     zone:          { fr: "Faille de Thessalie",      en: "Thessaly Rift"              },
     description:   { fr: "Déesse de la Discorde — attaques à l'arme à feu et bonus de dégâts.",
@@ -120,6 +126,7 @@ export const bosses: HadesBoss[] = [
   {
     id: "boss-prometheus",
     emoji: "🔥",
+    alertType: "quest",
     name:          { fr: "Prométhée",                en: "Prometheus"                 },
     zone:          { fr: "Mont Olympe",              en: "Mount Olympus"              },
     description:   { fr: "Titan de la Clairvoyance — maître des flammes et du combat au corps-à-corps.",
@@ -178,6 +185,7 @@ export const weapons: HadesWeapon[] = [
     id: "lames",
     name:        { fr: "Lames des Sœurs (Lim et Oros)", en: "Sister Blades (Lim & Oros)"     },
     emoji: "⚔️",
+    alertType: "item",
     description: { fr: "Armes de corps-à-corps rapides — idéales pour le backstab et l'esquive.",
                    en: "Fast melee weapons — ideal for backstabs and dodging."                },
     aspects: [
@@ -208,6 +216,7 @@ export const weapons: HadesWeapon[] = [
     id: "flammes",
     name:        { fr: "Flammes Ombrées (Ygnium)", en: "Umbral Flames (Ygnium)"          },
     emoji: "🔥",
+    alertType: "item",
     description: { fr: "Projectiles flottants et explosions à retardement.",
                    en: "Floating projectiles and delayed explosions."                     },
     aspects: [
@@ -238,6 +247,7 @@ export const weapons: HadesWeapon[] = [
     id: "hache",
     name:        { fr: "Hache de Pierre Lunaire (Zorephet)", en: "Moonstone Axe (Zorephet)"   },
     emoji: "🪓",
+    alertType: "item",
     description: { fr: "Arme lourde et lente — balayages dévastateurs et parade.",
                    en: "Slow heavy weapon — devastating sweeps and parry."                    },
     aspects: [
@@ -268,6 +278,7 @@ export const weapons: HadesWeapon[] = [
     id: "crane",
     name:        { fr: "Crâne Dentelé (Revaal)", en: "Serrated Skull (Revaal)"            },
     emoji: "💀",
+    alertType: "item",
     description: { fr: "Munitions à récupérer sur le terrain et ruées destructrices.",
                    en: "Field-recoverable ammo and destructive rushes."                    },
     aspects: [
@@ -434,6 +445,77 @@ export const weaponHeats: WeaponHeatGroup[] = weapons.map((w) => ({
   milestones: HEAT_LEVELS.map((level) => ({ level, id: `heat-${w.id}-${level}` })),
 }));
 
+// ─── Familiars ───────────────────────────────────────────────────────────────
+
+export interface HadesFamiliar {
+  id:         string;
+  name:       BiText;
+  emoji:      string;
+  how_to:     BiText;
+  alertType?: 'item' | 'quest';
+}
+
+export const familiars: HadesFamiliar[] = [
+  {
+    id: "familiar-frinos",
+    emoji: "🐸",
+    alertType: "item",
+    name:    { fr: "Frinos (Le Crapaud)",                 en: "Frinos (The Toad)"                  },
+    how_to:  { fr: "Offrir du Nectar à Hécate au Carrefour.",
+               en: "Give Nectar to Hecate at the Crossroads."                                      },
+  },
+  {
+    id: "familiar-toula",
+    emoji: "🐱",
+    alertType: "item",
+    name:    { fr: "Toula (Le Chat — Nécessite la Canne à Pêche)", en: "Toula (The Cat — Requires Fishing Rod)" },
+    how_to:  { fr: "Débloquer la pêche via l'Incantation d'Océanos, puis pêcher plusieurs fois.",
+               en: "Unlock fishing via Oceanus Incantation, then fish multiple times."             },
+  },
+  {
+    id: "familiar-raki",
+    emoji: "🐦‍⬛",
+    alertType: "item",
+    name:    { fr: "Raki (Le Corbeau — Déblocable dans l'Érèbe)", en: "Raki (The Crow — Unlockable in Erebus)" },
+    how_to:  { fr: "Trouver et nourrir le corbeau dans la zone d'Érèbe.",
+               en: "Find and feed the crow in the Erebus zone."                                    },
+  },
+];
+
+// ─── Souvenirs ────────────────────────────────────────────────────────────────
+
+export interface HadesSouvenir {
+  id:         string;
+  name:       BiText;
+  emoji:      string;
+  source:     BiText;
+  alertType?: 'item' | 'quest';
+}
+
+export const souvenirs: HadesSouvenir[] = [
+  {
+    id: "souvenir-pomme",
+    emoji: "🍎",
+    alertType: "item",
+    name:    { fr: "Pomme Bijou",          en: "Jewel Apple"        },
+    source:  { fr: "Donné par Hadès.",     en: "Given by Hades."    },
+  },
+  {
+    id: "souvenir-carte",
+    emoji: "📇",
+    alertType: "item",
+    name:    { fr: "Carte de Visite",      en: "Calling Card"       },
+    source:  { fr: "Donné par Zagreus.",   en: "Given by Zagreus."  },
+  },
+  {
+    id: "souvenir-sablier",
+    emoji: "⌛",
+    alertType: "item",
+    name:    { fr: "Sablier",              en: "Hourglass"          },
+    source:  { fr: "Donné par Chronos.",   en: "Given by Chronos."  },
+  },
+];
+
 // ─── Totals ───────────────────────────────────────────────────────────────────
 
 export const totalProphecies   = prophecies.length;
@@ -441,5 +523,8 @@ export const totalIncantations = incantations.length;
 export const totalAspects      = weapons.reduce((s, w) => s + w.aspects.length, 0);
 export const totalBosses       = bosses.length;
 export const totalHeatItems    = weaponHeats.reduce((s, g) => s + g.milestones.length, 0);
+export const totalFamiliars    = familiars.length;
+export const totalSouvenirs    = souvenirs.length;
 export const totalHades        =
-  totalProphecies + totalIncantations + totalAspects + totalBosses + totalHeatItems;
+  totalProphecies + totalIncantations + totalAspects + totalBosses + totalHeatItems +
+  totalFamiliars + totalSouvenirs;
