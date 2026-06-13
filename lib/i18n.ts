@@ -57,6 +57,7 @@ export const UI = {
   catSport:         { fr: "Sport",                          en: "Sport" },
   catRace:          { fr: "Courses",                        en: "Races" },
   catSocial:        { fr: "Social",                         en: "Social" },
+  catSecret:        { fr: "Easter Eggs & Secrets",          en: "Easter Eggs & Secrets" },
 
   // Secondary/Activity detail modal
   keyTip:           { fr: "Astuce clé",                     en: "Key Tip" },

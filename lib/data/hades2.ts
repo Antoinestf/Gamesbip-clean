@@ -7,7 +7,7 @@ export interface HadesProphecy {
   title:            BiText;
   description:      BiText;
   reward:           BiText;
-  category:         "main" | "power" | "companion" | "mastery" | "incantation";
+  category:         "main" | "power" | "companion" | "mastery" | "incantation" | "secret";
   walkthrough?:     BiText;
   alertType?:       'item' | 'quest';
   alertDescription?: string;
@@ -404,9 +404,31 @@ export const prophecies: HadesProphecy[] = [
     reward:      { fr: "20 Gold + trophée de parcours",
                    en: "20 Gold + run trophy"                                                },
   },
+  {
+    id: "prop-narrateur",
+    category: "secret",
+    alertType: "item",
+    alertDescription: "EASTER EGG : Lors de certaines runs très avancées, il est possible d'atteindre une salle spéciale où Mélinoé s'adresse directement à la voix off qui commente le jeu depuis le premier opus, brisant ainsi le quatrième mur.",
+    title:       { fr: "La Rencontre avec le Narrateur (Homère)", en: "The Narrator Encounter (Homer)" },
+    description: { fr: "Brisure du 4e mur : Mélinoé s'adresse directement à la voix off qui commente ses actions depuis Hades I.",
+                   en: "4th wall break: Melinoë directly addresses the narrator who has been commenting on events since Hades I." },
+    reward:      { fr: "Dialogue exclusif + Scène narrative unique", en: "Exclusive dialogue + Unique narrative scene" },
+    walkthrough: { fr: "Conditions exactes non confirmées (Early Access). Continuez à progresser dans le jeu et explorez toutes les salles spéciales de type 'chambre narratrice'.",
+                   en: "Exact conditions unconfirmed (Early Access). Continue progressing and explore all special 'narrator chamber' rooms." },
+  },
+  {
+    id: "prop-portrait",
+    category: "secret",
+    alertType: "item",
+    alertDescription: "EASTER EGG : Dans le domaine de Chronos (Tartare), fouillez bien les décors pour trouver le tableau de famille d'Hadès, Zagreus et Perséphone, lâchement vandalisé par le Titan du Temps.",
+    title:       { fr: "Le Portrait de Famille Déchiré",          en: "The Torn Family Portrait"     },
+    description: { fr: "Un tableau de famille d'Hadès, Zagreus et Perséphone vandalisé par Chronos, caché dans les décors du Tartare.",
+                   en: "A family portrait of Hades, Zagreus and Persephone vandalized by Chronos, hidden in Tartarus scenery." },
+    reward:      { fr: "Lore World-building exclusif", en: "Exclusive world-building lore" },
+    walkthrough: { fr: "Explorez minutieusement les salles du Tartare (domaine de Chronos). Regardez les murs et le décor en arrière-plan — le tableau n'est pas interactif mais visible dans certaines chambres.",
+                   en: "Carefully explore Tartarus rooms (Chronos's domain). Examine walls and background scenery — the painting isn't interactive but is visible in certain chambers." },
+  },
 ];
-
-// ─── Cauldron Incantations ────────────────────────────────────────────────────
 
 export const incantations: HadesIncantation[] = [
   {

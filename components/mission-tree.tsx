@@ -7,7 +7,7 @@ import {
   secondaryMissions, collectibleCategories, ZONES, loc,
   type Mission, type SecondaryMission,
 } from "@/lib/missions";
-import { activities, totalActivities, getActivityTitle, getActivityDescription, getActivityTip, type Activity as ActivityData } from "@/lib/activities";
+import { activities, easterEggActivities, totalActivities, getActivityTitle, getActivityDescription, getActivityTip, type Activity as ActivityData } from "@/lib/activities";
 import { MissionNode } from "@/components/mission-node";
 import { MissionDetail, type DetailTab } from "@/components/mission-detail";
 import { SecondaryDetail } from "@/components/secondary-detail";
@@ -163,6 +163,7 @@ export function MissionTree({ onBack }: MissionTreeProps) {
     sport:   t("catSport"),
     race:    t("catRace"),
     social:  t("catSocial"),
+    secret:  t("catSecret"),
   };
 
   return (
@@ -519,8 +520,10 @@ export function MissionTree({ onBack }: MissionTreeProps) {
             <SectionHeader icon={<Activity className="h-5 w-5 text-cyan-400" />}
               title={t("activitiesTitle")} subtitle={t("activitiesDesc")}
               done={activitiesDone} total={totalActivities} />
-            {(["leisure", "sport", "race", "social"] as const).map((cat) => {
-              const catActivities = activities.filter((a) => a.category === cat);
+            {(["leisure", "sport", "race", "social", "secret"] as const).map((cat) => {
+              const catActivities = cat === "secret"
+                ? easterEggActivities
+                : activities.filter((a) => a.category === cat);
               return (
                 <div key={cat}>
                   <h3 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2 mt-4 first:mt-0">
@@ -531,6 +534,9 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                       const key    = `act-${activity.id}`;
                       const isDone = !!completed[key];
                       const tip    = getActivityTip(activity, lang);
+                      const alertDesc = lang === "en" && activity.alertDescription_en
+                        ? activity.alertDescription_en
+                        : activity.alertDescription;
                       return (
                         <div key={activity.id}
                           onClick={() => { setSecDetailActivity(activity); setSecDetailMission(null); setSecDetailTab("details"); setSecDetailOpen(true); }}
@@ -559,9 +565,29 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                                   {activity.character}
                                 </span>
                               )}
+                              {activity.alertType === 'item' && (
+                                <span className="bg-red-500/20 text-red-400 text-[9px] px-1.5 py-0.5 rounded font-medium tracking-wide shrink-0">
+                                  Objet unique
+                                </span>
+                              )}
+                              {activity.alertType === 'quest' && (
+                                <span className="bg-orange-500/20 text-orange-400 text-[9px] px-1.5 py-0.5 rounded font-medium tracking-wide shrink-0">
+                                  Point de non-retour
+                                </span>
+                              )}
                             </div>
                             <p className="text-xs text-slate-400 mt-0.5">{getActivityDescription(activity, lang)}</p>
-                            {tip && (
+                            {alertDesc && (
+                              <div className={cn(
+                                "mt-2 rounded-md p-2 text-[11px] leading-snug border",
+                                activity.alertType === 'quest'
+                                  ? "bg-orange-500/10 border-orange-500/20 text-orange-200"
+                                  : "bg-red-500/10 border-red-500/20 text-red-200"
+                              )}>
+                                {alertDesc}
+                              </div>
+                            )}
+                            {tip && !alertDesc && (
                               <div className="mt-1.5 flex items-start gap-2">
                                 <span className="mt-0.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-cyan-900/50">
                                   <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />

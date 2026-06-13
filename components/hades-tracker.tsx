@@ -149,10 +149,11 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
   const l = (b: { fr: string; en: string }) => b[lang as "fr" | "en"];
 
   const catLabels: Record<string, { fr: string; en: string }> = {
-    main:      { fr: "Principal",  en: "Main"      },
-    power:     { fr: "Pouvoir",    en: "Power"     },
-    companion: { fr: "Compagnon",  en: "Companion" },
-    mastery:   { fr: "Ma\u00eetrise",   en: "Mastery"   },
+    main:      { fr: "Principal",             en: "Main"                   },
+    power:     { fr: "Pouvoir",               en: "Power"                  },
+    companion: { fr: "Compagnon",             en: "Companion"              },
+    mastery:   { fr: "Ma\u00eetrise",         en: "Mastery"                },
+    secret:    { fr: "Easter Eggs & Secrets", en: "Easter Eggs & Secrets"  },
   };
 
   const tabs: { id: ActiveTab; labelFr: string; labelEn: string; icon: React.ReactNode; pct: number }[] = [

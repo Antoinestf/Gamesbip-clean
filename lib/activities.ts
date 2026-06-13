@@ -1,6 +1,6 @@
 import type { Lang } from "@/lib/i18n";
 
-export type ActivityCategory = "leisure" | "sport" | "race" | "social";
+export type ActivityCategory = "leisure" | "sport" | "race" | "social" | "secret";
 
 export interface Activity {
   id:           string;
@@ -13,6 +13,9 @@ export interface Activity {
   character?:   string;
   completionTip?: string;
   completionTip_en?: string;
+  alertType?:   "item" | "quest";
+  alertDescription?: string;
+  alertDescription_en?: string;
 }
 
 export const activities: Activity[] = [
@@ -158,3 +161,48 @@ export function getActivityTip(a: Activity, lang: Lang): string | undefined {
 }
 
 export const totalActivities = activities.length;
+
+export const easterEggActivities: Activity[] = [
+  {
+    id: "egg-alien",
+    title: "L'Alien piégé dans la glace",
+    title_en: "The Frozen Alien",
+    description: "Un extraterrestre congelé sous le pont de North Yankton, visible uniquement lors de la toute première mission.",
+    description_en: "A frozen extraterrestrial under the North Yankton bridge, visible only during the very first mission.",
+    category: "secret",
+    zone: "north-yankton",
+    alertType: "item",
+    alertDescription: "EASTER EGG : Lors de la toute première mission à North Yankton, au lieu de suivre la route, descendez sous le pont pour trouver un extraterrestre congelé dans la rivière.",
+    alertDescription_en: "EASTER EGG: During the very first mission in North Yankton, instead of following the road, go under the bridge to find an extraterrestrial frozen in the river.",
+    completionTip: "Vous avez une fenêtre de quelques secondes après le début de la mission. Ignorez l'objectif, descendez immédiatement vers la rivière sous le pont de North Yankton.",
+    completionTip_en: "You have a few seconds window after the mission starts. Ignore the objective, immediately head down to the river under the North Yankton bridge.",
+  },
+  {
+    id: "egg-fantome",
+    title: "Le Fantôme du Mont Gordo",
+    title_en: "The Mount Gordo Ghost",
+    description: "Le spectre de Jolene Cranley-Evans apparaît au sommet du Mont Gordo entre 23h00 et minuit.",
+    description_en: "The ghost of Jolene Cranley-Evans appears atop Mount Gordo between 11pm and midnight.",
+    category: "secret",
+    zone: "blaine-county",
+    alertType: "item",
+    alertDescription: "EASTER EGG : Rendez-vous au sommet du Mont Gordo entre 23h00 et minuit pour apercevoir le fantôme de Jolene Cranley-Evans. Approchez-vous et elle disparaîtra en laissant un message de sang.",
+    alertDescription_en: "EASTER EGG: Head to the top of Mount Gordo between 11pm and midnight to spot the ghost of Jolene Cranley-Evans. Approach her and she will vanish, leaving a bloody message.",
+    completionTip: "Utilisez Trevor basé à Sandy Shores pour vous déplacer rapidement. Montez sur le rocher au sommet du Mont Gordo à l'heure indiquée. Le mot 'JOCK' est gravé dans le rocher de sang.",
+    completionTip_en: "Use Trevor based in Sandy Shores for quick travel. Stand on the rock at the top of Mount Gordo at the indicated time. The word 'JOCK' is written in blood on the rock.",
+  },
+  {
+    id: "egg-ovni",
+    title: "L'OVNI du Mont Chiliad",
+    title_en: "The Mount Chiliad UFO",
+    description: "La soucoupe volante secrète n'apparaît qu'à 3h du matin sous un temps orageux avec 100% de complétion.",
+    description_en: "The secret UFO only appears at 3am during stormy weather with 100% game completion.",
+    category: "secret",
+    zone: "blaine-county",
+    alertType: "quest",
+    alertDescription: "EASTER EGG ULTIME : Nécessite le 100% de complétion du jeu. Allez au sommet du Mont Chiliad à 3h du matin sous un temps orageux pour assister à l'apparition de la soucoupe volante.",
+    alertDescription_en: "ULTIMATE EASTER EGG: Requires 100% game completion. Go to the top of Mount Chiliad at 3am during stormy weather to witness the appearance of the flying saucer.",
+    completionTip: "Grimpez en téléphérique jusqu'au sommet. Attendez 3h du matin (avancez l'heure via le sommeil si besoin). La pluie doit être active. L'OVNI descend depuis les nuages — ne montez pas sur le toit de la cabine.",
+    completionTip_en: "Take the cable car to the summit. Wait until 3am (advance time via sleep if needed). Rain must be active. The UFO descends from the clouds — don't stand on the cable car roof.",
+  },
+];

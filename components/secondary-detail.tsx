@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, CheckCircle2, MapPin, Gamepad2, Trophy, TrendingUp, Lightbulb } from "lucide-react";
+import { X, CircleCheck as CheckCircle2, MapPin, Gamepad2, Trophy, TrendingUp, Lightbulb } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/lib/language-context";
 import type { Lang } from "@/lib/i18n";
@@ -261,6 +261,9 @@ function ActivityContent({
   const desc  = lang === "en" && activity.description_en ? activity.description_en : activity.description;
   const tip   = getActivityTip(activity, lang);
   const zone  = ZONES[activity.zone] ?? activity.zone;
+  const alertDesc = lang === "en" && activity.alertDescription_en
+    ? activity.alertDescription_en
+    : activity.alertDescription;
 
   return (
     <>
@@ -306,6 +309,21 @@ function ActivityContent({
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {activeTab === "details" && (
           <>
+            {alertDesc && (
+              <div className={cn(
+                "rounded-lg p-3.5 border text-sm leading-relaxed",
+                activity.alertType === 'quest'
+                  ? "bg-orange-500/10 border-orange-500/20 text-orange-200"
+                  : "bg-red-500/10 border-red-500/20 text-red-200"
+              )}>
+                <p className={cn("font-bold mb-1 text-xs uppercase tracking-wide",
+                  activity.alertType === 'quest' ? "text-orange-400" : "text-red-400"
+                )}>
+                  {activity.alertType === 'quest' ? '⚠ Point de non-retour' : '💎 Easter Egg / Objet unique'}
+                </p>
+                <p>{alertDesc}</p>
+              </div>
+            )}
             <div className="rounded-lg bg-slate-800/50 border border-slate-700/50 p-3.5">
               <div className="flex items-start gap-3">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyan-900/50 border border-cyan-700/50">
@@ -331,6 +349,7 @@ function ActivityContent({
                 {activity.category === "leisure" ? (lang === "en" ? "Leisure" : "Loisirs") :
                  activity.category === "sport" ? "Sport" :
                  activity.category === "race" ? (lang === "en" ? "Races" : "Courses") :
+                 activity.category === "secret" ? "Easter Eggs & Secrets" :
                  "Social"}
               </span>
             </div>

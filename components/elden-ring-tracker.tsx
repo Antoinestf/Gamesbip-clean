@@ -104,7 +104,7 @@ const ELDEN_RING_DATA: Quest[] = [
     id: 'lune_obscure', category: 'armurerie', name: 'Espadon de la Lune Obscure',
     region: 'Liurnia', level: '60+', duration: '10 min', difficulty: 'Facile',
     alertType: 'item',
-    alertMessage: "Cet objet unique est accessible uniquement après avoir terminé la quête de Ranni. Il ne peut pas être obtenu autrement.",
+    alertMessage: "EASTER EGG / OBJET UNIQUE : L'arme signature de FromSoftware (Moonlight Greatsword), présente dans presque tous leurs jeux. S'obtient en terminant l'interminable et complexe quête de Ranni la Sorcière.",
     description: "Arme légendaire d'intelligence.",
     steps: ["Finissez la quête de Ranni.", "Récupérez sous la Cathédrale."],
     reward: 'Espadon', prereq: 'Quête Ranni'
@@ -127,6 +127,21 @@ const ELDEN_RING_DATA: Quest[] = [
   },
 
   // --- DÉFIS (Exploration / Donjons optionnels) ---
+  {
+    id: 'mur_illusoire', category: 'defis', name: 'Le Mur Illusoire aux 50 Coups (Manoir du Volcan)',
+    region: 'Mt. Gelmir', level: '70+', duration: '5 min', difficulty: 'Facile',
+    alertType: 'item',
+    alertMessage: "EASTER EGG : Dans les couloirs du Manoir du Volcan, un mur illusoire spécifique ne disparaît pas au premier coup, mais demande de le frapper exactement 50 fois pour s'effondrer !",
+    description: "Un mur illusoire qui résiste — il faut le frapper 50 fois pour le détruire.",
+    steps: [
+      "Entrez dans le Manoir du Volcan (Mt. Gelmir, Acte 2).",
+      "Naviguez jusqu'aux couloirs intérieurs du premier étage.",
+      "Cherchez le mur au fond du couloir après la salle de repos.",
+      "Frappez ce mur 50 fois consécutives — il finira par s'effondrer.",
+      "Récupérez les objets dans la salle secrète derrière.",
+    ],
+    reward: 'Accès salle secrète (Rune Arc + objets)', prereq: 'Accès Manoir du Volcan'
+  },
   {
     id: 'tunnel_gael', category: 'defis', name: 'Tunnel de Gael',
     region: 'Caelid', level: '30-40', duration: '25 min', difficulty: 'Difficile',
