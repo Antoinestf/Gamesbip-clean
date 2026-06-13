@@ -329,7 +329,7 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                   <div className="flex flex-col">
                     {rows.map((row, rowIdx) => (
                       <div key={rowIdx} className="flex flex-col items-center">
-                        <div className={row.length > 1 ? "grid w-full gap-2 sm:grid-cols-2 lg:grid-cols-3" : "w-full"}>
+                        <div className={row.length > 1 ? "grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-3" : "w-full"}>
                           {row.map((mission) => (
                             <MissionNode key={mission.id} mission={mission}
                               completed={!!completed[mission.id]}
@@ -338,8 +338,8 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                           ))}
                         </div>
                         {rowIdx < rows.length - 1 && (
-                          <div className="flex items-center justify-center py-1.5">
-                            <span className="h-5 w-px bg-slate-700/50" />
+                          <div className="flex items-center justify-center py-2">
+                            <span className="h-6 w-px bg-slate-700/50" />
                           </div>
                         )}
                       </div>
