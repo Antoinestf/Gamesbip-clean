@@ -12,6 +12,7 @@ import {
   totalProphecies, totalIncantations, totalAspects, totalBosses, totalHeatItems,
   totalFamiliars, totalSouvenirs, totalHades,
   type HadesProphecy, type HadesIncantation, type WeaponAspect, type HadesWeapon,
+  type HadesFamiliar, type HadesSouvenir,
 } from "@/lib/data/hades2";
 
 const STORAGE_KEY = "hadesbip_progress";
@@ -108,6 +109,7 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
   const [detailOpen, setDetailOpen] = useState(false);
   const [bossDetailOpen, setBossDetailOpen] = useState(false);
   const [bossDetailBoss, setBossDetailBoss] = useState<typeof bosses[number] | null>(null);
+  const [collectibleDetail, setCollectibleDetail] = useState<{ emoji: string; name: string; sublabel: string; alertType?: 'item' | 'quest'; alertDescription?: string } | null>(null);
 
   useEffect(() => {
     const saved = loadFromStorage(STORAGE_KEY);
@@ -365,6 +367,7 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
                     alertType={fam.alertType}
                     isDone={!!completed[fam.id]}
                     onToggle={() => toggle(fam.id)}
+                    onInfo={() => setCollectibleDetail({ emoji: fam.emoji, name: l(fam.name), sublabel: l(fam.how_to), alertType: fam.alertType, alertDescription: fam.alertDescription })}
                   />
                 ))}
               </div>
@@ -391,6 +394,7 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
                     alertType={sov.alertType}
                     isDone={!!completed[sov.id]}
                     onToggle={() => toggle(sov.id)}
+                    onInfo={() => setCollectibleDetail({ emoji: sov.emoji, name: l(sov.name), sublabel: l(sov.source), alertType: sov.alertType, alertDescription: sov.alertDescription })}
                   />
                 ))}
               </div>
@@ -496,6 +500,46 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
         onToggle={() => { if (bossDetailBoss) toggle(bossDetailBoss.id); }}
         lang={lang}
       />
+
+      {/* Collectible detail modal (Familiars / Souvenirs) */}
+      {collectibleDetail && (
+        <>
+          <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={() => setCollectibleDetail(null)} />
+          <div className="fixed inset-x-3 bottom-3 top-3 z-50 flex items-center justify-center pointer-events-none md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-md">
+            <div className="pointer-events-auto relative w-full rounded-2xl border border-slate-700/50 bg-slate-900/95 backdrop-blur-md shadow-2xl overflow-hidden" style={{ maxHeight: "calc(100dvh - 24px)" }}>
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
+              <div className="flex items-start gap-3 p-4 border-b border-slate-700/50">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xl border-2 border-cyan-500/50 bg-cyan-900/30 mt-0.5">
+                  {collectibleDetail.emoji}
+                </div>
+                <div className="flex-1 min-w-0 pr-8">
+                  <h2 className="text-base font-black leading-tight text-slate-100">{collectibleDetail.name}</h2>
+                  <p className="text-xs mt-0.5 text-slate-400">{collectibleDetail.sublabel}</p>
+                </div>
+                <button type="button" onClick={() => setCollectibleDetail(null)}
+                  className="absolute right-3 top-3 rounded-lg p-1.5 text-slate-400 hover:text-slate-100 bg-slate-800/50 hover:bg-slate-700/50 transition-colors touch-manipulation">
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+              <div className="p-4 space-y-3">
+                {collectibleDetail.alertType && collectibleDetail.alertDescription && (
+                  <div className={`flex gap-2.5 p-3 rounded-lg text-sm border ${
+                    collectibleDetail.alertType === 'quest'
+                      ? 'bg-orange-500/10 border-orange-500/20 text-orange-200'
+                      : 'bg-red-500/10 border-red-500/20 text-red-200'
+                  }`}>
+                    <span className="shrink-0 mt-0.5">{collectibleDetail.alertType === 'quest' ? '⚠️' : '💎'}</span>
+                    <p className="leading-relaxed">{collectibleDetail.alertDescription}</p>
+                  </div>
+                )}
+                <div className="rounded-lg bg-slate-800/50 border border-slate-700/50 p-3.5">
+                  <p className="text-sm text-slate-300 leading-relaxed">{collectibleDetail.sublabel}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -615,6 +659,16 @@ function BossDetail({
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {activeTab === "details" && (
               <>
+                {boss.alertType && boss.alertDescription && (
+                  <div className={`flex gap-2.5 p-3 rounded-lg text-sm border ${
+                    boss.alertType === 'quest'
+                      ? 'bg-orange-500/10 border-orange-500/20 text-orange-200'
+                      : 'bg-red-500/10 border-red-500/20 text-red-200'
+                  }`}>
+                    <span className="shrink-0 mt-0.5">{boss.alertType === 'quest' ? '⚠️' : '💎'}</span>
+                    <p className="leading-relaxed">{boss.alertDescription}</p>
+                  </div>
+                )}
                 <div className="rounded-lg bg-slate-800/50 border border-slate-700/50 p-3.5">
                   <p className="text-sm text-slate-300 leading-relaxed">{l(boss.description)}</p>
                 </div>

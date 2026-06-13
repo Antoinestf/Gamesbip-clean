@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X, CheckCircle2, Scroll, FlameKindling, Sword, Trophy, Gamepad2 } from "lucide-react";
+import { X, CircleCheck as CheckCircle2, Scroll, FlameKindling, Sword, Trophy, Gamepad2 } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { SupportBanner } from "@/components/support-banner";
 import type { HadesProphecy, HadesIncantation, HadesWeapon, WeaponAspect } from "@/lib/data/hades2";
@@ -112,6 +112,25 @@ export function HadesDetail({ item, open, onOpenChange, completed, onToggleCompl
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {activeTab === "details" && (
               <>
+                {(() => {
+                  const alertType = item.kind === "prophecy" ? item.data.alertType
+                    : item.kind === "aspect" ? item.weapon.alertType
+                    : undefined;
+                  const alertDesc = item.kind === "prophecy" ? item.data.alertDescription
+                    : item.kind === "aspect" ? item.weapon.alertDescription
+                    : undefined;
+                  if (!alertType || !alertDesc) return null;
+                  return (
+                    <div className={`flex gap-2.5 p-3 rounded-lg text-sm border ${
+                      alertType === 'quest'
+                        ? 'bg-orange-500/10 border-orange-500/20 text-orange-200'
+                        : 'bg-red-500/10 border-red-500/20 text-red-200'
+                    }`}>
+                      <span className="shrink-0 mt-0.5">{alertType === 'quest' ? '⚠️' : '💎'}</span>
+                      <p className="leading-relaxed">{alertDesc}</p>
+                    </div>
+                  );
+                })()}
                 {item.kind === "prophecy" && (
                   <>
                     <span className="inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide bg-cyan-900/50 text-cyan-400 border border-cyan-700/50">
