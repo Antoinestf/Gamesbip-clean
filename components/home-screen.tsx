@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChevronRight, Clock } from "lucide-react";
+import { ChevronRight, Clock, LayoutDashboard } from "lucide-react";
 import { GAME_REGISTRY, type GameMeta } from "@/lib/game-registry";
 import { loadFromStorage } from "@/lib/storage";
 import { totalMissions, totalSecondary, totalCollectibleItems } from "@/lib/missions";
@@ -12,7 +12,7 @@ import { useLanguage } from "@/lib/language-context";
 import { LangToggle } from "@/components/lang-toggle";
 import { cn } from "@/lib/utils";
 
-type GameView = "home" | "gta5" | "hades2" | "sts2" | "eldenring";
+type GameView = "home" | "gta5" | "hades2" | "sts2" | "eldenring" | "dashboard";
 
 interface HomeScreenProps {
   onSelectGame: (view: GameView) => void;
@@ -103,7 +103,15 @@ export function HomeScreen({ onSelectGame }: HomeScreenProps) {
                 : "Reach 100% completion on all your favorite games."}
             </p>
           </div>
-          <div className="pt-2 shrink-0">
+          <div className="flex items-center gap-3 pt-2 shrink-0">
+            <button
+              type="button"
+              onClick={() => onSelectGame("dashboard")}
+              className="flex items-center gap-1.5 rounded-lg border border-slate-700/50 bg-slate-800/70 px-3 py-1.5 text-xs font-bold text-cyan-400 transition-colors hover:bg-slate-700/70 hover:border-cyan-500/50"
+            >
+              <LayoutDashboard className="h-3.5 w-3.5" />
+              Dashboard
+            </button>
             <LangToggle />
           </div>
         </div>

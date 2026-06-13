@@ -6,9 +6,10 @@ import { MissionTree } from "@/components/mission-tree";
 import { HadesTracker } from "@/components/hades-tracker";
 import { Sts2Tracker } from "@/components/sts2-tracker";
 import EldenRingTracker from "@/components/elden-ring-tracker";
+import { Dashboard } from "@/components/dashboard";
 import { AdPlaceholder } from "@/components/ad-placeholder";
 
-type GameView = "home" | "gta5" | "hades2" | "sts2" | "eldenring";
+type GameView = "home" | "gta5" | "hades2" | "sts2" | "eldenring" | "dashboard";
 
 export default function Page() {
   const [view, setView] = useState<GameView>("home");
@@ -30,6 +31,7 @@ export default function Page() {
       {view === "hades2"     && <HadesTracker     onBack={() => handleChangeView("home")} />}
       {view === "sts2"       && <Sts2Tracker      onBack={() => handleChangeView("home")} />}
       {view === "eldenring" && <EldenRingTracker onBack={() => handleChangeView("home")} />}
+      {view === "dashboard" && <Dashboard onBack={() => handleChangeView("home")} />}
       <AdPlaceholder />
     </>
   );
