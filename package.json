@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@netlify/plugin-nextjs": "^5.15.11",
+    "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.378.0",
     "next": "^14.2.0",
