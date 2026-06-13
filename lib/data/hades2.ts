@@ -9,6 +9,7 @@ export interface HadesProphecy {
   reward:      BiText;
   category:    "main" | "power" | "companion" | "mastery" | "incantation";
   walkthrough?: BiText;
+  alertType?:  'item' | 'quest';
 }
 
 export interface HadesIncantation {
@@ -45,6 +46,7 @@ export interface HadesBoss {
   description:   BiText;
   route:         BiText;
   prerequisites: BiText;
+  alertType?:    'item' | 'quest';
 }
 
 export const bosses: HadesBoss[] = [
@@ -84,6 +86,7 @@ export const bosses: HadesBoss[] = [
   {
     id: "boss-chronos",
     emoji: "⏳",
+    alertType: "quest",
     name:          { fr: "Chronos",                  en: "Chronos"                    },
     zone:          { fr: "Tartare",                  en: "Tartarus"                   },
     description:   { fr: "Le Titan du Temps — boss final de la voie des Enfers.",
@@ -329,6 +332,7 @@ export const prophecies: HadesProphecy[] = [
   {
     id: "prop-seek-us",
     category: "main",
+    alertType: "item",
     title:       { fr: "Mélinoé, Cherche-Nous",           en: "Melinoë, Seek Us"              },
     description: { fr: "L'exigence absolue pour déclencher la rencontre avec les Moires d'Oceanus.",
                    en: "The strict requirement to trigger the Fates encounter in Oceanus." },

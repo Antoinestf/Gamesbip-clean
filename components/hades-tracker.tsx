@@ -24,9 +24,10 @@ type DetailItem =
 interface HadesTrackerProps { onBack: () => void }
 
 function CheckTile({
-  id, label, sublabel, badge, isDone, onToggle, onInfo,
+  id, label, sublabel, badge, alertType, isDone, onToggle, onInfo,
 }: {
   id: string; label: string; sublabel?: string; badge?: string;
+  alertType?: 'item' | 'quest';
   isDone: boolean; onToggle: () => void; onInfo?: () => void;
 }) {
   return (
@@ -42,9 +43,21 @@ function CheckTile({
         {isDone && <CheckCircle2 className="h-3.5 w-3.5 text-white" />}
       </button>
       <div className="flex-1 min-w-0">
-        <span className={`text-sm font-semibold leading-snug ${isDone ? "text-slate-100" : "text-slate-300"}`}>
-          {label}
-        </span>
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span className={`text-sm font-semibold leading-snug ${isDone ? "text-slate-100" : "text-slate-300"}`}>
+            {label}
+          </span>
+          {alertType === 'item' && (
+            <span className="bg-red-500/20 text-red-400 text-[9px] px-1.5 py-0.5 rounded font-medium tracking-wide shrink-0">
+              Objet unique
+            </span>
+          )}
+          {alertType === 'quest' && (
+            <span className="bg-orange-500/20 text-orange-400 text-[9px] px-1.5 py-0.5 rounded font-medium tracking-wide shrink-0">
+              Point de non-retour
+            </span>
+          )}
+        </div>
         {sublabel && <p className="text-[11px] mt-0.5 text-slate-400">{sublabel}</p>}
         {badge && (
           <span className="mt-1.5 inline-block rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide bg-cyan-900/50 text-cyan-400 border border-cyan-700/50">
@@ -246,9 +259,21 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
                       {isDone ? <CheckCircle2 className="h-3.5 w-3.5" /> : <span className="text-base">{boss.emoji}</span>}
                     </button>
                     <div className="flex-1 min-w-0">
-                      <p className={`font-semibold text-sm leading-tight ${isDone ? "text-slate-100" : "text-slate-300"}`}>
-                        {l(boss.name)}
-                      </p>
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <p className={`font-semibold text-sm leading-tight ${isDone ? "text-slate-100" : "text-slate-300"}`}>
+                          {l(boss.name)}
+                        </p>
+                        {boss.alertType === 'item' && (
+                          <span className="bg-red-500/20 text-red-400 text-[9px] px-1.5 py-0.5 rounded font-medium tracking-wide shrink-0">
+                            Objet unique
+                          </span>
+                        )}
+                        {boss.alertType === 'quest' && (
+                          <span className="bg-orange-500/20 text-orange-400 text-[9px] px-1.5 py-0.5 rounded font-medium tracking-wide shrink-0">
+                            Point de non-retour
+                          </span>
+                        )}
+                      </div>
                       <p className="text-[11px] mt-0.5 leading-tight text-slate-500 line-clamp-1">{l(boss.zone)}</p>
                     </div>
                   </div>
@@ -281,6 +306,7 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
                     label={l(prop.title)}
                     sublabel={`\u2726 ${l(prop.reward)}`}
                     badge={l(catLabels[prop.category])}
+                    alertType={prop.alertType}
                     isDone={!!completed[prop.id]}
                     onToggle={() => toggle(prop.id)}
                     onInfo={() => openDetail({ kind: "prophecy", data: prop })}
