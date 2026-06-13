@@ -1,12 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Gamepad2, Trophy, Star, Package, Smartphone, MapPin, Activity, CircleCheck as CheckCircle2, Circle, Map, List, TrendingUp, ArrowLeft, X } from "lucide-react";
 import {
-  Gamepad2, Trophy, Star, Package, Smartphone,
-  MapPin, Activity, CheckCircle2, Circle, Map, List, TrendingUp, ArrowLeft, X
-} from "lucide-react";
-import {
-  getActs, buildRows, totalMissions, totalSecondary, totalCollectibleItems,
+  getActs, totalMissions, totalSecondary, totalCollectibleItems,
   secondaryMissions, collectibleCategories, ZONES, loc,
   type Mission, type SecondaryMission,
 } from "@/lib/missions";
@@ -306,8 +303,7 @@ export function MissionTree({ onBack }: MissionTreeProps) {
         {/* STORY: Chapter view */}
         {mainTab === "story" && !zoneView && (
           <>
-            {actGroups.map((act, actIdx) => {
-              const rows    = buildRows(act.missions);
+            {actGroups.map((act) => {
               const actDone = act.missions.filter((m) => !!completed[m.id]).length;
               const actTitle = loc(act.title, act.title_en, lang)
                 .replace(/^Act(?:e)? [IVX]+ — /i, "")
@@ -315,7 +311,7 @@ export function MissionTree({ onBack }: MissionTreeProps) {
               return (
                 <section key={act.index} data-chapter={act.index}
                   ref={(el) => { sectionRefs.current[act.index] = el; }}
-                  className="relative scroll-mt-56">
+                  className="relative scroll-mt-56 mb-8">
                   <div className="flex items-center gap-3 py-4">
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border-2 border-cyan-500/50 bg-cyan-900/30 font-mono text-sm font-extrabold text-cyan-400">
                       {act.index}
@@ -325,35 +321,19 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                     </h2>
                     <span className="font-mono text-xs text-slate-400 shrink-0">{actDone}/{act.missions.length}</span>
                   </div>
-                  <div className="-mt-2 mb-3 h-[2px] w-full rounded-full bg-gradient-to-r from-cyan-400/70 via-cyan-400/20 to-transparent" />
-                  <div className="flex flex-col">
-                    {rows.map((row, rowIdx) => (
-                      <div key={rowIdx} className="flex flex-col items-center">
-                        <div className={row.length > 1 ? "grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-3" : "w-full"}>
-                          {row.map((mission) => (
-                            <MissionNode key={mission.id} mission={mission}
-                              completed={!!completed[mission.id]}
-                              active={activeId === mission.id && detailOpen}
-                              onClick={() => openDetail(mission.id, "details")} />
-                          ))}
-                        </div>
-                        {rowIdx < rows.length - 1 && (
-                          <div className="flex items-center justify-center py-2">
-                            <span className="h-6 w-px bg-slate-700/50" />
-                          </div>
-                        )}
-                      </div>
+                  <div className="-mt-2 mb-4 h-[2px] w-full rounded-full bg-gradient-to-r from-cyan-400/70 via-cyan-400/20 to-transparent" />
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {act.missions.map((mission) => (
+                      <MissionNode key={mission.id} mission={mission}
+                        completed={!!completed[mission.id]}
+                        active={activeId === mission.id && detailOpen}
+                        onClick={() => openDetail(mission.id, "details")} />
                     ))}
                   </div>
-                  {actIdx < actGroups.length - 1 && (
-                    <div className="flex justify-center py-2">
-                      <span className="h-5 w-px bg-slate-700/50" />
-                    </div>
-                  )}
                 </section>
               );
             })}
-            <div className="mt-8 flex items-center gap-3 rounded-lg border border-slate-700/50 bg-slate-900/80 backdrop-blur-md px-4 py-3">
+            <div className="mt-4 flex items-center gap-3 rounded-lg border border-slate-700/50 bg-slate-900/80 backdrop-blur-md px-4 py-3">
               <Trophy className="h-4 w-4 text-cyan-400 shrink-0" />
               <Progress value={storyPct} className="h-2 flex-1" />
               <span className="font-mono text-sm font-bold text-cyan-400 shrink-0">
