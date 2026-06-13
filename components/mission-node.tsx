@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, TrendingUp } from "lucide-react";
+import { CircleCheck as CheckCircle2, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CharacterBadge } from "@/components/character-badge";
 import { useLanguage } from "@/lib/language-context";
@@ -56,6 +56,16 @@ export function MissionNode({ mission, completed, active, onClick }: MissionNode
           <h3 className={cn("text-sm font-semibold leading-tight", completed ? "text-slate-100" : "text-slate-300")}>
             {title}
           </h3>
+          {mission.alertType === "item" && (
+            <span className="text-[9px] px-1.5 py-0.5 rounded ml-2 bg-red-100 text-red-700 font-semibold shrink-0">
+              {lang === "en" ? "Unique item" : "Objet unique"}
+            </span>
+          )}
+          {mission.alertType === "quest" && (
+            <span className="text-[9px] px-1.5 py-0.5 rounded ml-2 bg-orange-100 text-orange-700 font-semibold shrink-0">
+              {lang === "en" ? "Point of no return" : "Point de non-retour"}
+            </span>
+          )}
           <CharacterBadge protagonist={mission.protagonist} />
         </div>
         <p className="mt-0.5 text-[11px] text-slate-500 line-clamp-1 leading-tight">{description}</p>

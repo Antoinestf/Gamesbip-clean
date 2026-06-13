@@ -43,6 +43,7 @@ export interface Mission {
   prerequisites_en?: string;
   howToUnlock?: string;
   howToUnlock_en?: string;
+  alertType?: "item" | "quest";
 }
 
 export interface Act {
