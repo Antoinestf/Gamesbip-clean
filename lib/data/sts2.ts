@@ -3,13 +3,15 @@ export interface BiText { fr: string; en: string }
 // ─── Standardized Item (same modal schema as other games) ─────────────────────
 
 export interface Sts2Item {
-  id:            string;
-  title:         BiText;
-  description:   BiText;
-  prerequisites: BiText;
-  howToUnlock:   BiText;
-  solution:      BiText;
-  category:      "character" | "secret" | "relic";
+  id:               string;
+  title:            BiText;
+  description:      BiText;
+  prerequisites:    BiText;
+  howToUnlock:      BiText;
+  solution:         BiText;
+  category:         "character" | "secret" | "relic";
+  alertType?:       'item' | 'quest';
+  alertDescription?: string;
 }
 
 // ─── Characters ───────────────────────────────────────────────────────────────
@@ -83,7 +85,85 @@ export const sts2Characters: Sts2Item[] = [
 
 // ─── Secrets ──────────────────────────────────────────────────────────────────
 
+const BOSS_ACT_ALERT = "Vaincre ce boss clôture l'Acte en cours. Vous passerez au biome suivant et ne pourrez plus faire marche arrière pour visiter les Feux de Camp ou Marchands manqués lors de cette run.";
+const ANCIEN_ALERT   = "Choisir la bénédiction d'un Ancien (ex: Parchemin Majestueux, Perle en Or) verrouille les autres options. Ce choix définitif dictera la synergie globale de votre deck pour tout le reste de la partie.";
+
 export const sts2Secrets: Sts2Item[] = [
+  {
+    id: "boss-act1",
+    category: "secret",
+    alertType: "quest",
+    alertDescription: BOSS_ACT_ALERT,
+    title:         { fr: "Boss de l'Acte I",                     en: "Act I Boss"                    },
+    description:   { fr: "Le gardien de fin du premier biome. Le vaincre vous propulse définitivement dans l'Acte II.",
+                     en: "The end-guardian of the first biome. Defeating it locks you into Act II." },
+    prerequisites: { fr: "Atteindre l'étage 16 (dernier étage de l'Acte I).",
+                     en: "Reach floor 16 (last floor of Act I)." },
+    howToUnlock:   { fr: "Chemin obligatoire — apparaît sur le dernier nœud de l'Acte I.",
+                     en: "Mandatory path — appears at the last node of Act I." },
+    solution:      { fr: "Préparez-vous avant d'engager : utilisez votre dernier Feu de Camp pour Forger ou vous Reposer. Reconstituez vos PV au maximum avant ce combat de transition.",
+                     en: "Prepare before engaging: use your last Campfire to Smith or Rest. Restore HP as much as possible before this transition fight." },
+  },
+  {
+    id: "boss-act2",
+    category: "secret",
+    alertType: "quest",
+    alertDescription: BOSS_ACT_ALERT,
+    title:         { fr: "Boss de l'Acte II",                    en: "Act II Boss"                   },
+    description:   { fr: "Le gardien de fin du deuxième biome. Le vaincre vous propulse définitivement dans l'Acte III.",
+                     en: "The end-guardian of the second biome. Defeating it locks you into Act III." },
+    prerequisites: { fr: "Atteindre le dernier étage de l'Acte II.",
+                     en: "Reach the last floor of Act II." },
+    howToUnlock:   { fr: "Chemin obligatoire — apparaît sur le dernier nœud de l'Acte II.",
+                     en: "Mandatory path — appears at the last node of Act II." },
+    solution:      { fr: "C'est votre dernière chance de déclencher le chemin secret de l'Oeil Gauche (Acte III). Vérifiez que vous avez la Pierre Étrange avant de progresser.",
+                     en: "This is your last chance to trigger the Left Eye secret path (Act III). Make sure you have the Strange Stone before progressing." },
+  },
+  {
+    id: "boss-act3",
+    category: "secret",
+    alertType: "quest",
+    alertDescription: BOSS_ACT_ALERT,
+    title:         { fr: "Boss de l'Acte III (Boss Final)",       en: "Act III Boss (Final Boss)"     },
+    description:   { fr: "Le boss de fin de run. La victoire met fin à la partie — il n'y a pas de retour en arrière.",
+                     en: "The run-ending boss. Victory ends the run — there is no going back." },
+    prerequisites: { fr: "Atteindre le dernier étage de l'Acte III.",
+                     en: "Reach the last floor of Act III." },
+    howToUnlock:   { fr: "Chemin obligatoire — dernier nœud de la run.",
+                     en: "Mandatory path — last node of the run." },
+    solution:      { fr: "Assurez-vous que votre deck est optimal. Visitez l'Œil Gauche si possible pour révéler ses intentions secrètes et adapter votre stratégie en conséquence.",
+                     en: "Make sure your deck is optimal. Visit the Left Eye if possible to reveal hidden intentions and adapt your strategy accordingly." },
+  },
+  {
+    id: "ancien-act2",
+    category: "secret",
+    alertType: "quest",
+    alertDescription: ANCIEN_ALERT,
+    title:         { fr: "Rencontre avec les Anciens (Acte II)",  en: "Elders Encounter (Act II)"     },
+    description:   { fr: "Au début de l'Acte II, les Anciens vous proposent une bénédiction unique parmi trois options. Ce choix est permanent et irréversible.",
+                     en: "At the start of Act II, the Elders offer you one unique blessing from three options. This choice is permanent and irreversible." },
+    prerequisites: { fr: "Terminer l'Acte I.",
+                     en: "Complete Act I." },
+    howToUnlock:   { fr: "Événement obligatoire au premier nœud de l'Acte II.",
+                     en: "Mandatory event at the first node of Act II." },
+    solution:      { fr: "Analysez les trois options avant de choisir. Le Parchemin Majestueux (améliore toutes vos cartes) est généralement le choix le plus sûr pour n'importe quel archétype.",
+                     en: "Analyze all three options before choosing. The Majestic Scroll (upgrades all your cards) is generally the safest choice for any archetype." },
+  },
+  {
+    id: "ancien-act3",
+    category: "secret",
+    alertType: "quest",
+    alertDescription: ANCIEN_ALERT,
+    title:         { fr: "Rencontre avec les Anciens (Acte III)", en: "Elders Encounter (Act III)"    },
+    description:   { fr: "Au début de l'Acte III, les Anciens vous proposent une dernière bénédiction décisive pour affronter le boss final.",
+                     en: "At the start of Act III, the Elders offer a final decisive blessing to face the final boss." },
+    prerequisites: { fr: "Terminer l'Acte II.",
+                     en: "Complete Act II." },
+    howToUnlock:   { fr: "Événement obligatoire au premier nœud de l'Acte III.",
+                     en: "Mandatory event at the first node of Act III." },
+    solution:      { fr: "Tenez compte des faiblesses de votre deck actuel. Si vous manquez de Parade, choisissez la Perle en Or. Si vos dégâts sont insuffisants, optez pour le Parchemin Majestueux.",
+                     en: "Take your current deck weaknesses into account. If you lack Block, choose the Golden Pearl. If your damage is insufficient, go for the Majestic Scroll." },
+  },
   {
     id: "secret-ghost-merchant",
     category: "secret",
@@ -128,6 +208,51 @@ export const sts2Secrets: Sts2Item[] = [
 // ─── Relic Combos ─────────────────────────────────────────────────────────────
 
 export const sts2Relics: Sts2Item[] = [
+  {
+    id: "relic-flute-os",
+    category: "relic",
+    alertType: "item",
+    alertDescription: "Relique majeure exclusive au Nécro-relieur. Génère de la Parade à chaque fois que votre familier Osty attaque. Un pilier absolu pour la survie de cette classe.",
+    title:         { fr: "Flûte en Os",                          en: "Bone Flute"                    },
+    description:   { fr: "Relique exclusive au Necrobinder : génère de la Parade à chaque attaque d'Osty.",
+                     en: "Necrobinder-exclusive relic: generates Block each time Osty attacks." },
+    prerequisites: { fr: "Jouer Le Necrobinder.",
+                     en: "Play as The Necrobinder." },
+    howToUnlock:   { fr: "Obtenue aléatoirement via les combats d'Élites ou les Boss (uniquement avec Le Necrobinder).",
+                     en: "Obtained randomly from Elite fights or Bosses (Necrobinder only)." },
+    solution:      { fr: "SYNERGIE : Coupler la Flûte en Os avec des cartes qui envoient Osty attaquer plusieurs fois par tour (ex: 'Commande Furieuse'). Vous pouvez générer plus de 30 points de Parade par tour sans jouer la moindre carte Compétence.",
+                     en: "SYNERGY: Pair Bone Flute with cards that send Osty to attack multiple times per turn (e.g., 'Furious Command'). You can generate over 30 Block per turn without playing a single Skill card." },
+  },
+  {
+    id: "blessing-perle-maudite",
+    category: "relic",
+    alertType: "item",
+    alertDescription: "Bénédiction de départ à double tranchant : vous octroie une immense quantité d'Or (333) au prix d'une malédiction Cupidité greffée à votre deck.",
+    title:         { fr: "Perle Maudite / Cursed Pearl",         en: "Cursed Pearl"                  },
+    description:   { fr: "Bénédiction de départ : +333 Or dès l'Acte I, mais ajoute la malédiction Cupidité à votre deck.",
+                     en: "Starting blessing: +333 Gold from Act I, but adds the Greed curse to your deck." },
+    prerequisites: { fr: "Disponible en tant que bénédiction de départ (choix initial avant la run).",
+                     en: "Available as a starting blessing (initial choice before the run)." },
+    howToUnlock:   { fr: "Proposée aléatoirement parmi les options de bénédiction de départ.",
+                     en: "Randomly offered among starting blessing options." },
+    solution:      { fr: "STRATÉGIE : L'or supplémentaire vous permet d'acheter des reliques et cartes clés dès l'Acte I. Compensez la malédiction Cupidité en incluant des cartes d'épuisement (Ironclad) ou de défausse (Silent) pour l'éliminer rapidement.",
+                     en: "STRATEGY: Extra gold lets you buy key relics and cards in Act I. Compensate for the Greed curse by including exhaust cards (Ironclad) or discard cards (Silent) to eliminate it quickly." },
+  },
+  {
+    id: "blessing-os-neow",
+    category: "relic",
+    alertType: "item",
+    alertDescription: "Offre 2 reliques de Neow aléatoires dès le début de la partie, mais ajoute définitivement une malédiction aléatoire à vos cartes de départ.",
+    title:         { fr: "Os de Neow / Neow's Bones",            en: "Neow's Bones"                  },
+    description:   { fr: "Bénédiction de départ : reçoit 2 reliques de Neow aléatoires, mais greffe une malédiction aléatoire au deck de départ.",
+                     en: "Starting blessing: receive 2 random Neow relics, but add a random curse to the starting deck." },
+    prerequisites: { fr: "Disponible en tant que bénédiction de départ (choix initial avant la run).",
+                     en: "Available as a starting blessing (initial choice before the run)." },
+    howToUnlock:   { fr: "Proposée aléatoirement parmi les options de bénédiction de départ.",
+                     en: "Randomly offered among starting blessing options." },
+    solution:      { fr: "ÉVALUATION : Extrêmement puissant si les reliques obtenues sont synergiques. Risqué avec la malédiction Régression (rétrograde des cartes améliorées). Recommandé sur l'Ironclad et le Defect qui gèrent bien l'épuisement.",
+                     en: "EVALUATION: Extremely powerful if the obtained relics are synergistic. Risky with the Regress curse (downgrades upgraded cards). Recommended on Ironclad and Defect who handle exhaust well." },
+  },
   {
     id: "relic-bone-specter",
     category: "relic",

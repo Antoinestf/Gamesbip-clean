@@ -91,6 +91,16 @@ function Sts2DetailModal({
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {activeTab === "details" && (
               <>
+                {item.alertType && item.alertDescription && (
+                  <div className={`flex gap-2.5 p-3 rounded-lg text-sm border ${
+                    item.alertType === 'quest'
+                      ? 'bg-orange-500/10 border-orange-500/20 text-orange-200'
+                      : 'bg-red-500/10 border-red-500/20 text-red-200'
+                  }`}>
+                    <span className="shrink-0 mt-0.5">{item.alertType === 'quest' ? '⚠️' : '💎'}</span>
+                    <p className="leading-relaxed">{item.alertDescription}</p>
+                  </div>
+                )}
                 <div className="rounded-lg bg-slate-800/50 border border-slate-700/50 p-3.5">
                   <p className="text-sm text-slate-300 leading-relaxed">{l(item.description)}</p>
                 </div>
@@ -146,10 +156,11 @@ function Sts2DetailModal({
 // ─── CheckTile ────────────────────────────────────────────────────────────────
 
 function CheckTile({
-  label, sublabel, isDone, onToggle, onInfo,
+  label, sublabel, isDone, onToggle, onInfo, alertType,
 }: {
   label: string; sublabel?: string; isDone: boolean;
   onToggle: () => void; onInfo?: () => void;
+  alertType?: 'item' | 'quest';
 }) {
   return (
     <div
@@ -161,7 +172,19 @@ function CheckTile({
         {isDone && <CheckCircle2 className="h-3.5 w-3.5 text-white" />}
       </button>
       <div className="flex-1 min-w-0">
-        <span className={`text-sm font-semibold leading-snug ${isDone ? "text-slate-100" : "text-slate-300"}`}>{label}</span>
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span className={`text-sm font-semibold leading-snug ${isDone ? "text-slate-100" : "text-slate-300"}`}>{label}</span>
+          {alertType === 'item' && (
+            <span className="bg-red-500/20 text-red-400 text-[9px] px-1.5 py-0.5 rounded font-medium tracking-wide shrink-0">
+              Objet unique
+            </span>
+          )}
+          {alertType === 'quest' && (
+            <span className="bg-orange-500/20 text-orange-400 text-[9px] px-1.5 py-0.5 rounded font-medium tracking-wide shrink-0">
+              Point de non-retour
+            </span>
+          )}
+        </div>
         {sublabel && <p className="text-[11px] mt-0.5 text-slate-400">{sublabel}</p>}
       </div>
     </div>
@@ -289,6 +312,7 @@ export function Sts2Tracker({ onBack }: Sts2TrackerProps) {
                   label={l(item.title)}
                   sublabel={l(item.description).slice(0, 80) + "\u2026"}
                   isDone={!!completed[item.id]}
+                  alertType={item.alertType}
                   onToggle={() => toggle(item.id)}
                   onInfo={() => { setDetailItem(item); setDetailOpen(true); }} />
               ))}
@@ -314,6 +338,7 @@ export function Sts2Tracker({ onBack }: Sts2TrackerProps) {
                   label={l(item.title)}
                   sublabel={l(item.description).slice(0, 80) + "\u2026"}
                   isDone={!!completed[item.id]}
+                  alertType={item.alertType}
                   onToggle={() => toggle(item.id)}
                   onInfo={() => { setDetailItem(item); setDetailOpen(true); }} />
               ))}
@@ -338,6 +363,7 @@ export function Sts2Tracker({ onBack }: Sts2TrackerProps) {
                   label={l(item.title)}
                   sublabel={l(item.description).slice(0, 80) + "\u2026"}
                   isDone={!!completed[item.id]}
+                  alertType={item.alertType}
                   onToggle={() => toggle(item.id)}
                   onInfo={() => { setDetailItem(item); setDetailOpen(true); }} />
               ))}
