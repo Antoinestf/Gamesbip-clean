@@ -8,8 +8,8 @@ import { totalMissions, totalSecondary, totalCollectibleItems } from "@/lib/miss
 import { totalActivities } from "@/lib/activities";
 import { totalHades } from "@/lib/data/hades2";
 import { totalSts2 } from "@/lib/data/sts2";
-import { LangToggle } from "@/components/lang-toggle";
 import { useLanguage } from "@/lib/language-context";
+import { LangToggle } from "@/components/lang-toggle";
 import { cn } from "@/lib/utils";
 
 type GameView = "home" | "gta5" | "hades2" | "sts2" | "eldenring";

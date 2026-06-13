@@ -17,27 +17,38 @@ const LanguageContext = createContext<LanguageContextValue>({
   t: (key) => key as string,
 });
 
+function detectBrowserLang(): Lang {
+  if (typeof window === "undefined") return "en";
+
+  const candidates = [
+    ...(navigator.languages ?? []),
+    navigator.language,
+  ]
+    .filter(Boolean)
+    .map((code) => code.toLowerCase());
+
+  return candidates.some((code) => code.startsWith("fr")) ? "fr" : "en";
+}
+
+function readInitialLang(): Lang {
+  if (typeof window === "undefined") return "en";
+
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY) as Lang | null;
+    if (stored === "fr" || stored === "en") return stored;
+  } catch {
+    // Storage unavailable — fall through to browser detection
+  }
+
+  return detectBrowserLang();
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
+  const [lang, setLangState] = useState<Lang>(readInitialLang);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY) as Lang | null;
-      if (stored === "fr" || stored === "en") {
-        // Respect existing manual choice
-        setLangState(stored);
-      } else {
-        // Auto-detect: fr only for French browsers, en for everything else
-        const browserLang = (navigator.language || navigator.languages?.[0] || "").toLowerCase();
-        const detected: Lang = browserLang.startsWith("fr") ? "fr" : "en";
-        setLangState(detected);
-        // Don't persist auto-detected preference — only persist manual choices
-      }
-    } catch {
-      // SSR or storage unavailable — stay with default "en"
-    }
-  }, []);
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   function setLang(l: Lang) {
     setLangState(l);

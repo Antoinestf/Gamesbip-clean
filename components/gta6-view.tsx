@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, MapPin, Clock, Gamepad2, Star } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
-import { LangToggle } from "@/components/lang-toggle";
 import { cn } from "@/lib/utils";
 
 interface Gta6ViewProps {
@@ -85,7 +84,6 @@ export function Gta6View({ onBack }: Gta6ViewProps) {
             <span className="hidden sm:inline">{lang === "fr" ? "Accueil" : "Home"}</span>
           </button>
           <div className="flex-1" />
-          <LangToggle />
         </div>
       </div>
 

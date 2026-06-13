@@ -20,7 +20,7 @@ import { useLanguage } from "@/lib/language-context";
 import type { Lang } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
-type MainTab = "story" | "secondary" | "collectibles" | "activities" | "gta6";
+type MainTab = "story" | "secondary" | "collectibles" | "activities";
 type CollectibleSub = string;
 
 interface MissionTreeProps {
@@ -155,7 +155,6 @@ export function MissionTree({ onBack }: MissionTreeProps) {
     { id: "secondary",   label: t("tabSecondary"),    count: totalSecondary,        done: secondaryDone },
     { id: "collectibles",label: t("tabCollectibles"), count: totalCollectibleItems, done: collectiblesDone },
     { id: "activities",  label: t("tabActivities"),   count: totalActivities,       done: activitiesDone },
-    { id: "gta6",        label: t("tabGta6"),         count: 0,                     done: 0 },
   ];
 
   const activityCategoryLabels: Record<string, string> = {
@@ -606,21 +605,6 @@ export function MissionTree({ onBack }: MissionTreeProps) {
           </div>
         )}
 
-        {/* GTA VI */}
-        {mainTab === "gta6" && (
-          <div className="flex flex-col items-center justify-center py-20 text-center gap-6">
-            <div className="relative">
-              <div className="flex h-24 w-24 items-center justify-center rounded-2xl border-2 border-cyan-500/30 bg-cyan-900/20">
-                <MapPin className="h-12 w-12 text-cyan-400/40" />
-              </div>
-            </div>
-            <div>
-              <h2 className="text-2xl font-extrabold uppercase tracking-wider text-cyan-400">{t("tabGta6")}</h2>
-              <p className="text-sm text-slate-300 mt-2 max-w-xs">{t("gta6Desc")}</p>
-              <p className="mt-4 text-xs text-slate-500 font-mono uppercase tracking-widest">{t("gta6Soon")}</p>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* PANELS */}

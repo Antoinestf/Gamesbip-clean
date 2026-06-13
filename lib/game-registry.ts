@@ -55,17 +55,6 @@ export const GAME_REGISTRY: GameMeta[] = [
     tagline: { fr: "Terres Interm\u00e9diaires \u2014 Guide Complet", en: "Lands Between \u2014 Full Guide" },
     badge:   { fr: "Actif",                                      en: "Active"                    },
   },
-  {
-    id:         "re-requiem",
-    title:      "RE Requiem",
-    subtitle:   "Resident Evil Requiem",
-    year:       "2026",
-    platform:   "PS5 / Xbox Series X / PC",
-    storageKey: "rerequiembip_progress",
-    status:     "soon",
-    tagline: { fr: "Survival Horror \u2014 Guide Complet",  en: "Survival Horror \u2014 Full Guide" },
-    badge:   { fr: "Bient\u00f4t",                          en: "Coming Soon"                  },
-  },
 ];
 
 export function getGameMeta(id: string): GameMeta | undefined {

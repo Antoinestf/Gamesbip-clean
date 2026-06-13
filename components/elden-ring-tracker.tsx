@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { X, Trophy, Gamepad2, ArrowLeft, Sparkles, CircleCheck as CheckCircle2 } from "lucide-react";
-import { loadFromStorage, saveToStorage } from "@/lib/storage";
 import { LangToggle } from "@/components/lang-toggle";
-
+import { loadFromStorage, saveToStorage } from "@/lib/storage";
 const STORAGE_KEY = "eldenringbip_progress";
 
 interface Quest {

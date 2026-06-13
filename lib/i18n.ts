@@ -11,7 +11,6 @@ export const UI = {
   tabSecondary:    { fr: "Inconnus",                        en: "Strangers" },
   tabCollectibles: { fr: "Collectibles",                    en: "Collectibles" },
   tabActivities:   { fr: "Activités",                       en: "Activities" },
-  tabGta6:         { fr: "GTA VI",                          en: "GTA VI" },
 
   // Mission node / detail
   solution:        { fr: "Solution",                        en: "Walkthrough" },
@@ -64,10 +63,6 @@ export const UI = {
   completionReq:    { fr: "Condition de complétion",        en: "Completion Requirement" },
   zoneLabel:        { fr: "Zone",                           en: "Zone" },
   characterLabel:   { fr: "Personnage",                     en: "Character" },
-
-  // GTA VI placeholder
-  gta6Desc:  { fr: "Le guide des missions de GTA VI sera disponible dès la sortie du jeu.", en: "The GTA VI mission guide will be available upon the game's release." },
-  gta6Soon:  { fr: "Bientôt disponible",                    en: "Coming Soon" },
 
   // Stats row
   statStory:        { fr: "hist.",                          en: "story" },
