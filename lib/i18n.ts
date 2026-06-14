@@ -71,6 +71,14 @@ export const UI = {
   statActiv:        { fr: "activ.",                         en: "activ." },
 
   // Sync modal
+  syncDescription: { fr: "Sauvegardez votre progression ou transférez-la sur un autre appareil.", en: "Back up your progress or transfer it to another device." },
+  exportFileBtn:   { fr: "Télécharger la sauvegarde",        en: "Download Backup" },
+  exportFileHint:  { fr: "Télécharge un fichier JSON contenant toute votre progression.", en: "Downloads a JSON file containing all your progress data." },
+  importFileBtn:   { fr: "Importer une sauvegarde",          en: "Import Backup" },
+  importFileHint:  { fr: "Chargez un fichier games-bip-save.json pour restaurer votre progression.", en: "Upload a games-bip-save.json file to restore your progress." },
+  importFileError: { fr: "Fichier invalide — vérifiez qu'il s'agit d'un fichier games-bip-save.json valide.", en: "Invalid file — make sure it's a valid games-bip-save.json file." },
+  importFileSuccess: { fr: "Sauvegarde restaurée avec succès !", en: "Backup restored successfully!" },
+  orSeparator:   { fr: "ou transférez via code",             en: "or transfer via code" },
   exportLabel:   { fr: "Exporter (copier ce code)",         en: "Export (copy this code)" },
   importLabel:   { fr: "Importer (coller un code)",         en: "Import (paste a code)" },
   copyBtn:       { fr: "Copier",                            en: "Copy" },
