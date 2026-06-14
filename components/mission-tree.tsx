@@ -696,6 +696,9 @@ function SecondaryMissionCard({
   const smDesc   = loc(sm.description, sm.description_en, lang);
   const smTip    = sm.tip ? (lang === "en" && sm.tip_en ? sm.tip_en : sm.tip) : undefined;
   const stock    = sm.stockAlert;
+  const smAlertDesc = sm.alertDescription
+    ? (lang === "en" && sm.alertDescription_en ? sm.alertDescription_en : sm.alertDescription)
+    : undefined;
 
   return (
     <div
@@ -726,12 +729,33 @@ function SecondaryMissionCard({
             <div className="flex items-center gap-2 flex-wrap">
               <h3 className={cn("font-semibold text-sm", isDone ? "text-slate-100" : "text-slate-300")}>{smTitle}</h3>
               <CharacterBadge protagonist={sm.protagonist} />
+              {sm.alertType === 'item' && (
+                <span className="bg-red-500/20 text-red-400 text-[9px] px-1.5 py-0.5 rounded font-medium tracking-wide shrink-0">
+                  {lang === "en" ? "Unique item" : "Objet unique"}
+                </span>
+              )}
+              {sm.alertType === 'quest' && (
+                <span className="bg-orange-500/20 text-orange-400 text-[9px] px-1.5 py-0.5 rounded font-medium tracking-wide shrink-0">
+                  {lang === "en" ? "Point of no return" : "Point de non-retour"}
+                </span>
+              )}
             </div>
             <span className="shrink-0 rounded-full bg-slate-800 border border-slate-700/50 px-2 py-0.5 text-[10px] font-semibold text-slate-400">
               {isLester ? t("lesterType") : t("strangersType")}
             </span>
           </div>
           <p className="text-xs text-slate-400 mt-0.5">{smDesc}</p>
+
+          {smAlertDesc && (
+            <div className={cn(
+              "mt-2 rounded-md p-2 text-[11px] leading-snug border",
+              sm.alertType === 'quest'
+                ? "bg-orange-500/10 border-orange-500/20 text-orange-200"
+                : "bg-red-500/10 border-red-500/20 text-red-200"
+            )}>
+              {smAlertDesc}
+            </div>
+          )}
 
           {smTip && (
             <div className="mt-2 flex items-start gap-2">

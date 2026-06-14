@@ -55,6 +55,23 @@ export const GAME_REGISTRY: GameMeta[] = [
     tagline: { fr: "Terres Interm\u00e9diaires \u2014 Guide Complet", en: "Lands Between \u2014 Full Guide" },
     badge:   { fr: "Actif",                                      en: "Active"                    },
   },
+  {
+    id: "re-requiem",
+    title: "Resident Evil Requiem",
+    slug: "/re-requiem",
+    coverImage: "/resident.webp",//
+    progress: 0,
+    isNew: true,
+    status: "active",
+    tagline: {
+      fr: "Survivre à l'horreur",
+      en: "Survive the horror"
+    },
+    badge: {
+      fr: "Nouveau",
+      en: "New"
+    }
+  }
 ];
 
 export function getGameMeta(id: string): GameMeta | undefined {

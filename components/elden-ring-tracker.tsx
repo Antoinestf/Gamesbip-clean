@@ -22,7 +22,7 @@ interface Quest {
   prereq: string;
 }
 
-const ELDEN_RING_DATA: Quest[] = [
+export const ELDEN_RING_DATA: Quest[] = [
   // --- ENTRE-TERRE (Boss Majeurs) ---
   {
     id: 'margit', category: 'entre_terre', name: 'Margit le Déchu',
@@ -170,6 +170,8 @@ const ELDEN_RING_DATA: Quest[] = [
     reward: 'Talisman de Graine', prereq: 'Clé-épée'
   }
 ];
+
+export const totalEldenRing = ELDEN_RING_DATA.length;
 
 const CATEGORIES = [
   { id: 'entre_terre', label: "L'Entre-Terre" },

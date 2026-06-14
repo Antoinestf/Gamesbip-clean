@@ -26,6 +26,7 @@ export interface WeaponAspect {
   name:        BiText;
   description: BiText;
   unlockHint?: BiText;
+  solution?:   BiText;
 }
 
 export interface HadesWeapon {
@@ -176,6 +177,8 @@ export const weapons: HadesWeapon[] = [
         id: "sceptre-melinoe",
         name:        { fr: "Aspect de Mélinoé",   en: "Aspect of Melinoë"          },
         description: { fr: "Forme de base.",       en: "Base form."                 },
+        solution:    { fr: "🔓 Déblocage : Disponible par défaut.\n\n⚔️ Style : Mi-distance polyvalent.\n⚡ Synergies : Héphaïstos (pour de gros dégâts bruts) ou Apollon (pour agrandir la zone de frappe).\n💡 Mécanique : Vous canalisez vos attaques Oméga beaucoup plus vite. C'est l'aspect parfait pour apprendre à gérer sa Magie sans prendre de risques.",
+                       en: "🔓 Unlock: Available by default.\n\n⚔️ Style: Versatile mid-range.\n⚡ Synergies: Hephaestus (for heavy raw damage) or Apollo (to expand the strike zone).\n💡 Mechanic: You channel your Omega attacks much faster. The perfect aspect to learn Magick management without taking risks." },
       },
       {
         id: "sceptre-circe",
@@ -184,6 +187,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Transforms nearby foes into harmless creatures."        },
         unlockHint:  { fr: "Parler à Hécate + 5 Psy",
                        en: "Speak to Hecate + 5 Psyche"                            },
+        solution:    { fr: "🔓 Déblocage : 5 Argent + 5 Lotus\n\n⚔️ Style : Agressif / Vitesse d'attaque.\n⚡ Synergies : Zeus (éclairs sur chaque frappe) ou Aphrodite.\n💡 Mécanique : Après 21 attaques, vous gagnez le buff 'Sérénité' (vitesse et régénération magique accrues). L'objectif est de frapper frénétiquement en attaque de base, puis de vider sa magie en Oméga.",
+                       en: "🔓 Unlock: 5 Silver + 5 Lotus\n\n⚔️ Style: Aggressive / Attack speed.\n⚡ Synergies: Zeus (lightning on every hit) or Aphrodite.\n💡 Mechanic: After 21 attacks, you gain the 'Serenity' buff (increased speed and Magick regen). The goal is to attack frantically with basic attacks, then dump all Magick into Omega." },
       },
       {
         id: "sceptre-momus",
@@ -192,6 +197,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Rapid strike succession — increased critical chance."   },
         unlockHint:  { fr: "Offrir Nectar / Épreuves + 10 Psy",
                        en: "Give Nectar / Trials + 10 Psyche"                      },
+        solution:    { fr: "🔓 Déblocage : 2 Calcaire + 1 Perle\n\n⚔️ Style : Distance et Survie.\n⚡ Synergies : Poséidon (dégâts d'éclaboussure) ou Déméter.\n💡 Mécanique : Joue énormément sur le spam du Spécial Oméga. Permet aussi de récupérer de la vie si on absorbe le spécial avec très peu de PV. Très sécurisant pour les hauts niveaux de peur.",
+                       en: "🔓 Unlock: 2 Ite + 1 Pearl\n\n⚔️ Style: Ranged and Survival.\n⚡ Synergies: Poseidon (splash damage) or Demeter.\n💡 Mechanic: Heavily relies on spamming Omega Special. Also lets you recover health when absorbing your Special at very low HP. Very safe for high Heat levels." },
       },
     ],
   },
@@ -208,6 +215,8 @@ export const weapons: HadesWeapon[] = [
         id: "lames-melinoe",
         name:        { fr: "Aspect de Mélinoé",   en: "Aspect of Melinoë"          },
         description: { fr: "Forme de base.",       en: "Base form."                 },
+        solution:    { fr: "🔓 Déblocage : Disponible par défaut.\n\n⚔️ Style : Corps-à-corps assassin.\n⚡ Synergies : Aphrodite (dégâts massifs de près) et Hestia.\n💡 Mécanique : L'aspect récompense le positionnement. Frappez vos ennemis dans le dos pour infliger des dégâts bonus. Utilisez votre Cast (cercle magique) pour les immobiliser et les contourner facilement.",
+                       en: "🔓 Unlock: Available by default.\n\n⚔️ Style: Assassin melee.\n⚡ Synergies: Aphrodite (massive close-range damage) and Hestia.\n💡 Mechanic: This aspect rewards positioning. Hit enemies from behind for bonus damage. Use your Cast (magic circle) to immobilize them and flank easily." },
       },
       {
         id: "lames-artemis",
@@ -216,6 +225,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Powerful critical strikes — rewards precision."         },
         unlockHint:  { fr: "Parler à Artémis + 5 Psy",
                        en: "Speak to Artemis + 5 Psyche"                           },
+        solution:    { fr: "🔓 Déblocage : 15 Argent + 1 Verre-de-Roche\n\n⚔️ Style : Contre-attaque au corps-à-corps.\n⚡ Synergies : Athéna ou Héphaïstos.\n💡 Mécanique : Introduit la mécanique de 'Parade'. En canalisant votre attaque Oméga, vous absorbez le prochain coup ennemi et ripostez avec des dégâts critiques dévastateurs. Exige un excellent timing.",
+                       en: "🔓 Unlock: 15 Silver + 1 Rock Glass\n\n⚔️ Style: Melee counter-attack.\n⚡ Synergies: Athena or Hephaestus.\n💡 Mechanic: Introduces the 'Parry' mechanic. While channeling your Omega attack, you absorb the next enemy hit and riposte with devastating critical damage. Requires excellent timing." },
       },
       {
         id: "lames-pan",
@@ -224,6 +235,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Wild nature's force — every hit shakes the ground."     },
         unlockHint:  { fr: "Rencontrer Pan + 6 Psy",
                        en: "Meet Pan + 6 Psyche"                                   },
+        solution:    { fr: "🔓 Déblocage : À trouver dans les Champs des Pleurs (composants variables)\n\n⚔️ Style : Mi-distance à tête chercheuse.\n⚡ Synergies : Poséidon (dégâts bruts sur le spécial).\n💡 Mécanique : Le build 'Mitrailleuse'. Lancez votre cercle magique (Cast) sur les ennemis : toutes vos attaques spéciales (les couteaux) vont traquer automatiquement les cibles piégées dans ce cercle.",
+                       en: "🔓 Unlock: Found in the Fields of Mourning (variable components)\n\n⚔️ Style: Homing mid-range.\n⚡ Synergies: Poseidon (raw Special damage).\n💡 Mechanic: The 'Machine Gun' build. Cast your magic circle on enemies: all your Special attacks (knives) will automatically track targets trapped in the circle." },
       },
     ],
   },
@@ -240,6 +253,8 @@ export const weapons: HadesWeapon[] = [
         id: "flammes-melinoe",
         name:        { fr: "Aspect de Mélinoé",   en: "Aspect of Melinoë"          },
         description: { fr: "Forme de base.",       en: "Base form."                 },
+        solution:    { fr: "🔓 Déblocage : Disponible par défaut.\n\n⚔️ Style : Distance et Mobilité continue.\n⚡ Synergies : Déméter (pour geler/ralentir) ou Hestia.\n💡 Mécanique : Vos flammes Oméga durent beaucoup plus longtemps. Le gameplay consiste à ne jamais s'arrêter de courir : tournez autour des boss en maintenant le bouton de tir enfoncé.",
+                       en: "🔓 Unlock: Available by default.\n\n⚔️ Style: Ranged and Continuous mobility.\n⚡ Synergies: Demeter (to freeze/slow) or Hestia.\n💡 Mechanic: Your Omega flames last much longer. The gameplay is about never stopping: circle around bosses while holding the fire button." },
       },
       {
         id: "flammes-moros",
@@ -248,6 +263,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Titan's blazing trail — extended burning DoT."         },
         unlockHint:  { fr: "Découvrir Moros + 7 Psy",
                        en: "Discover Moros + 7 Psyche"                             },
+        solution:    { fr: "🔓 Déblocage : 6 Bronze + 4 Larmes\n\n⚔️ Style : Poseur de bombes (Dégâts de zone).\n⚡ Synergies : Apollon (pour augmenter la zone d'explosion).\n💡 Mécanique : Vos attaques principales restent en lévitation sur le terrain. Tirez dessus avec votre Spécial pour les faire exploser. C'est lent à mettre en place, mais les dégâts terminaux sont monstrueux.",
+                       en: "🔓 Unlock: 6 Bronze + 4 Tears\n\n⚔️ Style: Bomb placer (Area damage).\n⚡ Synergies: Apollo (to increase explosion radius).\n💡 Mechanic: Your main attacks hover on the battlefield. Shoot them with your Special to detonate them. Slow to set up, but the final damage is monstrous." },
       },
       {
         id: "flammes-eos",
@@ -256,6 +273,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Blooming explosions — area damage on impact."          },
         unlockHint:  { fr: "Conditions spécifiques + 9 Psy",
                        en: "Specific conditions + 9 Psyche"                        },
+        solution:    { fr: "🔓 Déblocage : 2 Bois flotté + 2 Pommes Dorées\n\n⚔️ Style : Hit & Run.\n⚡ Synergies : Zeus ou Poséidon.\n💡 Mécanique : Vos attaques grossissent au fil des secondes sur le terrain. Lorsque vous sprintez, elles reviennent toutes vers vous comme un boomerang, ravageant les ennemis sur leur passage.",
+                       en: "🔓 Unlock: 2 Driftwood + 2 Golden Apples\n\n⚔️ Style: Hit & Run.\n⚡ Synergies: Zeus or Poseidon.\n💡 Mechanic: Your attacks grow over time on the battlefield. When you sprint, they all boomerang back to you, ravaging enemies in their path." },
       },
     ],
   },
@@ -272,6 +291,8 @@ export const weapons: HadesWeapon[] = [
         id: "hache-melinoe",
         name:        { fr: "Aspect de Mélinoé",   en: "Aspect of Melinoë"          },
         description: { fr: "Forme de base.",       en: "Base form."                 },
+        solution:    { fr: "🔓 Déblocage : Disponible par défaut.\n\n⚔️ Style : Tanking et dégâts très lourds.\n⚡ Synergies : Aphrodite (bonus de vie et puissance au contact).\n💡 Mécanique : Vous octroie des PV bonus et une récupération d'animation plus rapide. C'est l'arme la plus lente du jeu : compensez en encaissant les petits coups et en détruisant les armures adverses d'un seul coup.",
+                       en: "🔓 Unlock: Available by default.\n\n⚔️ Style: Tanking and very heavy damage.\n⚡ Synergies: Aphrodite (health bonus and close-range power).\n💡 Mechanic: Grants bonus HP and faster animation recovery. The slowest weapon in the game: compensate by tanking small hits and destroying enemy armor in one blow." },
       },
       {
         id: "hache-charon",
@@ -280,6 +301,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Infused with death coins — earn Obols during combat."   },
         unlockHint:  { fr: "Offrir Or à Charon + 6 Psy",
                        en: "Give Gold to Charon + 6 Psyche"                        },
+        solution:    { fr: "🔓 Déblocage : 3 Perles + 3 Oboles\n\n⚔️ Style : Lanceur de sorts massifs (Zone).\n⚡ Synergies : Apollon (agrandissement du cercle) ou Déméter.\n💡 Mécanique : Transforme la hache en arme magique. Votre cercle magique (Cast) dure plus longtemps. Si vous frappez ce cercle avec votre attaque lourde (Oméga), il explose et nettoie la salle entière.",
+                       en: "🔓 Unlock: 3 Pearls + 3 Obols\n\n⚔️ Style: Massive spell caster (Area).\n⚡ Synergies: Apollo (circle enlargement) or Demeter.\n💡 Mechanic: Turns the axe into a magic weapon. Your Cast (magic circle) lasts longer. If you hit the circle with your heavy attack (Omega), it explodes and clears the entire room." },
       },
       {
         id: "hache-thanatos",
@@ -288,6 +311,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Instant death strikes — executes below HP threshold."  },
         unlockHint:  { fr: "Rencontrer Thanatos + 8 Psy",
                        en: "Meet Thanatos + 8 Psyche"                              },
+        solution:    { fr: "🔓 Déblocage : Lié à l'avancée de l'histoire (fin de jeu)\n\n⚔️ Style : Berserker 'Glass Cannon'.\n⚡ Synergies : Héphaïstos (pour rajouter de l'armure et protéger le buff).\n💡 Mécanique : Vos attaques Oméga augmentent vos chances de coups critiques de façon permanente... jusqu'à ce que vous preniez des dégâts. Il faut jouer à la perfection sans se faire toucher pour maintenir le buff.",
+                       en: "🔓 Unlock: Tied to story progression (endgame)\n\n⚔️ Style: Berserker 'Glass Cannon'.\n⚡ Synergies: Hephaestus (to add armor and protect the buff).\n💡 Mechanic: Your Omega attacks permanently increase your critical hit chance... until you take damage. You must play perfectly without getting hit to maintain the buff." },
       },
     ],
   },
@@ -304,6 +329,8 @@ export const weapons: HadesWeapon[] = [
         id: "crane-melinoe",
         name:        { fr: "Aspect de Mélinoé",   en: "Aspect of Melinoë"          },
         description: { fr: "Forme de base.",       en: "Base form."                 },
+        solution:    { fr: "🔓 Déblocage : Disponible par défaut.\n\n⚔️ Style : Distance agressive.\n⚡ Synergies : Poséidon ou Aphrodite.\n💡 Mécanique : Vos attaques font beaucoup plus mal en fonction du nombre de crânes non ramassés sur le sol. Videz vos munitions de loin, foncez faire des dégâts massifs, et ramassez-les en fuyant.",
+                       en: "🔓 Unlock: Available by default.\n\n⚔️ Style: Aggressive ranged.\n⚡ Synergies: Poseidon or Aphrodite.\n💡 Mechanic: Your attacks deal more damage based on how many skulls are left on the ground. Dump ammo from afar, rush in for massive damage, then pick them up while retreating." },
       },
       {
         id: "crane-medee",
@@ -312,6 +339,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Summons minions from the dead to fight for you."        },
         unlockHint:  { fr: "Découvrir Médée + 8 Psy",
                        en: "Discover Medea + 8 Psyche"                             },
+        solution:    { fr: "🔓 Déblocage : 4 Fer + 1 Mandragore\n\n⚔️ Style : Corps-à-corps explosif (Kamikaze).\n⚡ Synergies : Hestia ou Aphrodite.\n💡 Mécanique : Change totalement l'arme. Vos attaques restent bloquées sur vous. Vous chargez les ennemis avec votre Dash et les obus accumulés explosent autour de vous dans un délai de 3 secondes.",
+                       en: "🔓 Unlock: 4 Iron + 1 Mandrake\n\n⚔️ Style: Explosive melee (Kamikaze).\n⚡ Synergies: Hestia or Aphrodite.\n💡 Mechanic: Completely changes the weapon. Your attacks stay locked on you. Dash-charge into enemies and the accumulated shells explode around you after 3 seconds." },
       },
       {
         id: "crane-persephone",
@@ -320,6 +349,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Echo projectiles — amplified multiple bounces."         },
         unlockHint:  { fr: "Offrir Ambroisie à Perséphone + 9 Psy",
                        en: "Give Ambrosia to Persephone + 9 Psyche"                },
+        solution:    { fr: "🔓 Déblocage : 1 Mousse + 5 Pavots\n\n⚔️ Style : Rafale ininterrompue.\n⚡ Synergies : Zeus (pour un déluge d'éclairs).\n💡 Mécanique : Tous vos dégâts génèrent de la 'Gloire'. Une fois chargée, cette Gloire permet de maintenir votre Spécial Oméga (la glissade) beaucoup plus longtemps pour devenir totalement intouchable.",
+                       en: "🔓 Unlock: 1 Moss + 5 Poppies\n\n⚔️ Style: Uninterrupted barrage.\n⚡ Synergies: Zeus (for a lightning deluge).\n💡 Mechanic: All your damage generates 'Glory'. Once charged, this Glory lets you sustain your Omega Special (the slide) much longer, becoming completely untouchable." },
       },
     ],
   },
@@ -403,6 +434,8 @@ export const prophecies: HadesProphecy[] = [
                    en: "Defeat Chronos for the first time."                                  },
     reward:      { fr: "20 Gold + trophée de parcours",
                    en: "20 Gold + run trophy"                                                },
+    walkthrough: { fr: "La clé du combat est la patience. Ne dashez jamais 'au hasard' car la zone de combat est petite. Équipez un bienfait de Sprint (comme celui d'Apollon ou Hephaïstos) pour fuir facilement ses immenses attaques d'aspiration. Ses attaques de zone (faux) infligent d'énormes dégâts : quand l'écran s'assombrit, trouvez immédiatement la zone de lumière pour survivre.",
+                   en: "Patience is the key to this fight. Never dash randomly — the arena is small. Equip a Sprint boon (like Apollo's or Hephaestus's) to escape his massive vacuum attacks. His scythe area attacks deal enormous damage: when the screen darkens, immediately find the light zone to survive." },
   },
   {
     id: "prop-narrateur",
@@ -427,6 +460,39 @@ export const prophecies: HadesProphecy[] = [
     reward:      { fr: "Lore World-building exclusif", en: "Exclusive world-building lore" },
     walkthrough: { fr: "Explorez minutieusement les salles du Tartare (domaine de Chronos). Regardez les murs et le décor en arrière-plan — le tableau n'est pas interactif mais visible dans certaines chambres.",
                    en: "Carefully explore Tartarus rooms (Chronos's domain). Examine walls and background scenery — the painting isn't interactive but is visible in certain chambers." },
+  },
+  {
+    id: "prop-reach-surface",
+    category: "main",
+    title:       { fr: "Atteindre la Surface",                en: "Reach the Surface"                },
+    description: { fr: "Briser le sceau et atteindre la surface pour la première fois.",
+                   en: "Break the seal and reach the surface for the first time."              },
+    reward:      { fr: "Accès à la voie de la Surface",
+                   en: "Access to the Surface path"                                            },
+    walkthrough: { fr: "Pour survivre à la malédiction de la surface, vous devez accomplir l'incantation spécifique dans le Chaudron. Faites quelques 'runs suicides' à la surface juste pour récolter de la Mousse et du Fer en vitesse, puis mourez. Une fois l'incantation lancée, la voie est libre.",
+                   en: "To survive the surface curse, you must complete the specific incantation in the Cauldron. Do a few 'suicide runs' to the surface just to quickly harvest Moss and Iron, then die. Once the incantation is cast, the path is clear." },
+  },
+  {
+    id: "prop-master-nocturnal",
+    category: "main",
+    title:       { fr: "Maîtriser les Armes Nocturnes",       en: "Master the Nocturnal Arms"        },
+    description: { fr: "Compléter une run victorieuse avec chaque Arme Nocturne.",
+                   en: "Complete a victorious run with each Nocturnal Arm."                    },
+    reward:      { fr: "Aspect secret débloqué",
+                   en: "Secret aspect unlocked"                                                },
+    walkthrough: { fr: "Pour valider cette prophétie facilement, faites des runs à 0 Chaleur en vous concentrant uniquement sur la survie (bienfaits d'Aphrodite pour la santé, Déméter pour le contrôle). N'hésitez pas à utiliser la carte de Tarot 'L'Amant' pour des boucliers gratuits dans les salles de boss.",
+                   en: "To complete this prophecy easily, do 0 Heat runs focusing only on survival (Aphrodite boons for health, Demeter for control). Don't hesitate to use the 'Lover' Arcana card for free shields in boss rooms." },
+  },
+  {
+    id: "prop-defeat-eris",
+    category: "main",
+    title:       { fr: "Vaincre Éris",                        en: "Defeat Eris"                      },
+    description: { fr: "Vaincre Éris, Déesse de la Discorde, pour la première fois.",
+                   en: "Defeat Eris, Goddess of Discord, for the first time."                 },
+    reward:      { fr: "Progression de la voie de la Surface",
+                   en: "Surface path progression"                                              },
+    walkthrough: { fr: "Éris utilise des armes à feu à distance. Mettez-vous à l'abri derrière les piliers de la zone lorsqu'elle tire en rafale. Son point faible est son rechargement : dashez au corps-à-corps à ce moment précis pour lui infliger un maximum de dégâts avant de vous remettre à couvert.",
+                   en: "Eris uses ranged firearms. Take cover behind the arena pillars when she fires in bursts. Her weak point is her reload: dash into melee at that exact moment to deal maximum damage before getting back to cover." },
   },
 ];
 
@@ -469,6 +535,27 @@ export const incantations: HadesIncantation[] = [
 ];
 
 // ─── Heat / Pact of Punishment milestones ─────────────────────────────────────
+
+export interface HeatGuide {
+  id:       string;
+  title:    BiText;
+  solution: BiText;
+}
+
+export const heatGuides: HeatGuide[] = [
+  {
+    id: "heat-guide-low",
+    title:    { fr: "Chaleur 1 à 8",  en: "Heat 1 to 8"  },
+    solution: { fr: "Pour vos premières montées en chaleur, activez les Vœux qui augmentent légèrement la vie des ennemis ou le coût de la boutique de Charon. Évitez absolument le Vœu qui accélère la vitesse d'attaque des ennemis (Vœu de Fureur), il casse les timings d'esquive.",
+               en: "For your first heat increases, activate Vows that slightly raise enemy health or Charon's shop costs. Absolutely avoid the Vow that speeds up enemy attacks (Vow of Fury) — it breaks dodge timings." },
+  },
+  {
+    id: "heat-guide-high",
+    title:    { fr: "Chaleur 16 à 24", en: "Heat 16 to 24" },
+    solution: { fr: "À ce stade, vous devez avoir un build optimal en tête avant même de commencer. Le Vœu limitant votre Magie maximale est gérable si vous jouez un build centré sur les attaques de base. Utilisez systématiquement vos Refus de la Mort et abusez des cercles d'immobilisation pour contrôler le terrain.",
+               en: "At this stage, you must have an optimal build in mind before even starting. The Vow limiting your max Magick is manageable if you play a basic-attack-focused build. Systematically use your Death Defiances and abuse immobilization circles to control the field." },
+  },
+];
 
 const HEAT_LEVELS = [1, 4, 8, 16, 24] as const;
 
