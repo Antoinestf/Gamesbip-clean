@@ -214,8 +214,7 @@ export default function EldenRingTracker({ onBack }: { onBack: () => void }) {
 
       {/* ── Sticky header ── */}
       <div
-        className="sticky top-0 z-30 backdrop-blur-md border-b"
-        style={{ backgroundColor: 'rgba(15,23,42,0.85)', borderColor: '#1e293b' }}
+        className="sticky top-0 z-30 backdrop-blur-lg bg-black/60 border-b border-slate-700/50"
       >
         <div className="mx-auto max-w-6xl px-4 py-3">
 
@@ -314,11 +313,7 @@ export default function EldenRingTracker({ onBack }: { onBack: () => void }) {
                 <div
                   key={item.id}
                   onClick={() => { setSelectedQuestId(item.id); setActiveTab('details'); }}
-                  className="flex items-start gap-3 rounded-xl border p-5 cursor-pointer transition-all duration-200 hover:scale-[1.01]"
-                  style={{
-                    backgroundColor: '#0f172a',
-                    borderColor: isDone ? 'rgba(0,208,244,0.4)' : '#1e293b',
-                  }}
+                  className={`flex items-start gap-3 rounded-xl border p-5 cursor-pointer transition-all duration-200 hover:scale-[1.01] bg-black/60 backdrop-blur-lg ${isDone ? 'border-cyan-500/50' : 'border-slate-700/50'}`}
                 >
                   {/* Checkbox */}
                   <button
@@ -380,12 +375,8 @@ export default function EldenRingTracker({ onBack }: { onBack: () => void }) {
           />
           <div className="fixed inset-x-3 bottom-3 top-3 z-50 flex items-center justify-center pointer-events-none md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-md">
             <div
-              className="pointer-events-auto relative w-full flex flex-col overflow-hidden rounded-2xl backdrop-blur-md border shadow-2xl"
-              style={{
-                maxHeight: 'calc(100dvh - 24px)',
-                backgroundColor: 'rgba(15,23,42,0.97)',
-                borderColor: completed[activeQuest.id] ? 'rgba(0,208,244,0.4)' : '#1e293b',
-              }}
+              className={`pointer-events-auto relative w-full flex flex-col overflow-hidden rounded-2xl backdrop-blur-lg bg-black/70 border shadow-2xl ${completed[activeQuest.id] ? 'border-cyan-500/50' : 'border-slate-700/50'}`}
+              style={{ maxHeight: 'calc(100dvh - 24px)' }}
             >
               {/* Top accent line */}
               <div

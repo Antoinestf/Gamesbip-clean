@@ -54,7 +54,7 @@ function Sts2DetailModal({
     <>
       <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={onClose} />
       <div className="fixed inset-x-3 bottom-3 top-3 z-50 flex items-center justify-center pointer-events-none md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-md">
-        <div className={`pointer-events-auto relative w-full rounded-2xl border bg-slate-900/95 backdrop-blur-md shadow-2xl flex flex-col overflow-hidden max-h-[calc(100dvh-24px)] md:max-h-[85vh] ${completed ? "border-cyan-500/50" : "border-slate-700/50"}`}>
+        <div className={`pointer-events-auto relative w-full rounded-2xl border bg-black/70 backdrop-blur-lg shadow-2xl flex flex-col overflow-hidden max-h-[calc(100dvh-24px)] md:max-h-[85vh] ${completed ? "border-cyan-500/50" : "border-slate-700/50"}`}>
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
 
           {/* Header */}
@@ -163,7 +163,7 @@ function CheckTile({
   return (
     <div
       onClick={onInfo}
-      className={`flex items-start gap-3 rounded-xl p-4 transition-all duration-200 bg-slate-900/80 backdrop-blur-md border ${isDone ? "border-cyan-500/50" : "border-slate-700/50"} ${onInfo ? "cursor-pointer hover:border-cyan-500/40" : ""}`}>
+      className={`flex items-start gap-3 rounded-xl p-4 transition-all duration-200 bg-black/60 backdrop-blur-lg border ${isDone ? "border-cyan-500/50" : "border-slate-700/50"} ${onInfo ? "cursor-pointer hover:border-cyan-500/40" : ""}`}>
       <button type="button" onClick={(e) => { e.stopPropagation(); onToggle(); }}
         className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-all touch-manipulation border-2 ${isDone ? "border-cyan-500 bg-cyan-500" : "border-slate-600"}`}
         aria-label={isDone ? "Marquer comme non terminé" : "Marquer comme terminé"}>
@@ -234,7 +234,7 @@ export function Sts2Tracker({ onBack }: Sts2TrackerProps) {
   return (
     <div className="min-h-screen bg-slate-950">
       {/* Sticky header */}
-      <div className="sticky top-0 z-30 backdrop-blur-md bg-slate-900/80 border-b border-slate-700/50">
+      <div className="sticky top-0 z-30 backdrop-blur-lg bg-black/60 border-b border-slate-700/50">
         <div className="mx-auto max-w-6xl px-4 py-3">
           <div className="flex items-center gap-2 mb-2">
             <button type="button" onClick={onBack}

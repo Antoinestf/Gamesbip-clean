@@ -1,10 +1,18 @@
 "use client";
 
+ devin/1781378181-dashboard-component
+import { useRef, useState } from "react";
+import { X, Copy, Download, Upload, CheckCircle2, HardDrive, FileUp } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { encodeState, decodeState, saveToStorage, loadFromStorage, type AppState } from "@/lib/storage";
+import { GAME_REGISTRY } from "@/lib/game-registry";
+
 import { useState } from "react";
 import { X, Copy, Download, Upload, CheckCircle2, Cloud, CloudUpload, CloudDownload } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { encodeState, decodeState, type AppState } from "@/lib/storage";
 import { saveToCloud, loadFromCloud } from "@/lib/cloud-save";
+ main
 import { useLanguage } from "@/lib/language-context";
 
 interface SyncModalProps {
@@ -13,6 +21,25 @@ interface SyncModalProps {
   state:    AppState;
   onImport: (state: AppState) => void;
 }
+
+ devin/1781378181-dashboard-component
+/** Shape of the full backup file */
+interface BackupData {
+  version: number;
+  date:    string;
+  games:   Record<string, AppState>;
+}
+
+export function SyncModal({ open, onClose, state, onImport }: SyncModalProps) {
+  const { t } = useLanguage();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const [importCode, setImportCode]           = useState("");
+  const [copied, setCopied]                   = useState(false);
+  const [importError, setImportError]         = useState("");
+  const [importSuccess, setImportSuccess]     = useState(false);
+  const [fileError, setFileError]             = useState("");
+  const [fileSuccess, setFileSuccess]         = useState(false);
 
 type ActiveTab = "manual" | "cloud";
 
@@ -23,6 +50,7 @@ export function SyncModal({ open, onClose, state, onImport }: SyncModalProps) {
   const [copied, setCopied]               = useState(false);
   const [importError, setImportError]     = useState("");
   const [importSuccess, setImportSuccess] = useState(false);
+ main
 
   // Cloud save state
   const [cloudSaving, setCloudSaving]     = useState(false);
@@ -37,6 +65,85 @@ export function SyncModal({ open, onClose, state, onImport }: SyncModalProps) {
 
   const exportCode = encodeState(state);
 
+  /* ─── Export: download full backup as JSON ─── */
+  function handleExportFile() {
+    const backup: BackupData = {
+      version: 1,
+      date: new Date().toISOString(),
+      games: {},
+    };
+
+    for (const game of GAME_REGISTRY) {
+      const saved = loadFromStorage(game.storageKey);
+      if (Object.keys(saved.completed).length > 0 || Object.keys(saved.checked).length > 0) {
+        backup.games[game.storageKey] = saved;
+      }
+    }
+
+    const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement("a");
+    a.href     = url;
+    a.download = "games-bip-save.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  /* ─── Import: upload JSON backup file ─── */
+  function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
+    setFileError("");
+    setFileSuccess(false);
+
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const raw = ev.target?.result as string;
+        const data = JSON.parse(raw) as BackupData;
+
+        if (!data || typeof data.games !== "object" || !data.version) {
+          setFileError(t("importFileError"));
+          return;
+        }
+
+        // Write each game's data back to localStorage
+        for (const [storageKey, gameState] of Object.entries(data.games)) {
+          if (
+            gameState &&
+            typeof gameState.completed === "object" &&
+            typeof gameState.checked === "object"
+          ) {
+            saveToStorage(gameState, storageKey);
+          }
+        }
+
+        // Refresh the current view's state (GTA V tree passes its state)
+        const currentGameKey = GAME_REGISTRY.find(g => g.storageKey === "gtabip_progress")?.storageKey;
+        if (currentGameKey && data.games[currentGameKey]) {
+          onImport(data.games[currentGameKey]);
+        } else {
+          // Fallback: reload current state from storage
+          const reloaded = loadFromStorage("gtabip_progress");
+          onImport(reloaded);
+        }
+
+        setFileSuccess(true);
+        setTimeout(() => { setFileSuccess(false); onClose(); window.location.reload(); }, 1500);
+      } catch {
+        setFileError(t("importFileError"));
+      }
+    };
+    reader.readAsText(file);
+
+    // Reset so same file can be selected again
+    e.target.value = "";
+  }
+
+  /* ─── Export: copy code ─── */
   async function handleCopy() {
     try {
       await navigator.clipboard.writeText(exportCode);
@@ -45,6 +152,7 @@ export function SyncModal({ open, onClose, state, onImport }: SyncModalProps) {
     } catch {}
   }
 
+  /* ─── Import: paste code ─── */
   function handleImport() {
     setImportError("");
     setImportSuccess(false);
@@ -103,16 +211,90 @@ export function SyncModal({ open, onClose, state, onImport }: SyncModalProps) {
     <>
       <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm" onClick={onClose} />
       <div className="fixed inset-x-4 top-1/2 z-50 -translate-y-1/2 pointer-events-none flex justify-center">
+ devin/1781378181-dashboard-component
+        <div className="pointer-events-auto w-full max-w-sm rounded-2xl border border-slate-700/50 bg-black/70 backdrop-blur-lg p-5 shadow-2xl max-h-[85vh] overflow-y-auto">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-2">
+
         <div className="pointer-events-auto w-full max-w-sm rounded-2xl border border-slate-700/50 bg-slate-900/95 backdrop-blur-md shadow-2xl overflow-hidden">
 
           {/* Header */}
           <div className="flex items-center justify-between px-5 pt-5 pb-3">
+ main
             <h2 className="text-base font-bold text-slate-100">{t("syncTitle")}</h2>
             <button type="button" onClick={onClose}
               className="rounded-md p-1 text-slate-400 hover:text-slate-100 transition-colors touch-manipulation">
               <X className="h-4 w-4" />
             </button>
           </div>
+          <p className="text-xs text-slate-400 mb-5">{t("syncDescription")}</p>
+
+          {/* ═══ FILE EXPORT ═══ */}
+          <div className="mb-4">
+            <p className="text-xs mb-2 flex items-center gap-1.5">
+              <HardDrive className="h-3.5 w-3.5 text-cyan-400" />
+              <span className="font-semibold text-slate-100">{t("exportFileBtn")}</span>
+            </p>
+            <button
+              type="button"
+              onClick={handleExportFile}
+              className="w-full flex items-center justify-center gap-2 rounded-lg border border-slate-700/50 bg-cyan-600 hover:bg-cyan-500 px-4 py-2.5 text-sm font-semibold text-white transition-colors touch-manipulation"
+            >
+              <Download className="h-4 w-4" />
+              {t("exportFileBtn")}
+            </button>
+            <p className="mt-1.5 text-[10px] text-slate-500">{t("exportFileHint")}</p>
+          </div>
+
+          {/* ═══ FILE IMPORT ═══ */}
+          <div className="mb-5">
+            <p className="text-xs mb-2 flex items-center gap-1.5">
+              <FileUp className="h-3.5 w-3.5 text-cyan-400" />
+              <span className="font-semibold text-slate-100">{t("importFileBtn")}</span>
+            </p>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".json"
+              onChange={handleFileSelect}
+              className="hidden"
+            />
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="w-full flex items-center justify-center gap-2 rounded-lg border border-dashed border-slate-600 hover:border-cyan-500/50 bg-slate-800/30 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:text-slate-100 transition-colors touch-manipulation"
+            >
+              <Upload className="h-4 w-4" />
+              {t("importFileBtn")}
+            </button>
+            {fileError && <p className="mt-1.5 text-xs text-red-400">{fileError}</p>}
+            {fileSuccess && (
+              <p className="mt-1.5 text-xs text-cyan-400 flex items-center gap-1">
+                <CheckCircle2 className="h-3 w-3" />
+                {t("importFileSuccess")}
+              </p>
+            )}
+            <p className="mt-1.5 text-[10px] text-slate-500">{t("importFileHint")}</p>
+          </div>
+
+          {/* ═══ SEPARATOR ═══ */}
+          <div className="flex items-center gap-3 my-5">
+            <div className="flex-1 border-t border-slate-700/50" />
+            <span className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">{t("orSeparator")}</span>
+            <div className="flex-1 border-t border-slate-700/50" />
+          </div>
+
+ devin/1781378181-dashboard-component
+          {/* ═══ CODE EXPORT ═══ */}
+          <div className="mb-4">
+            <p className="text-xs text-slate-400 mb-2 flex items-center gap-1.5">
+              <Download className="h-3.5 w-3.5" />
+              <span className="font-semibold text-slate-100">{t("exportLabel")}</span>
+            </p>
+            <div className="flex gap-2">
+              <input readOnly value={exportCode}
+                className="flex-1 min-w-0 rounded-md border border-slate-700/50 bg-slate-800/50 px-2 py-1.5 font-mono text-[10px] text-slate-300" />
+              <button type="button" onClick={handleCopy}
 
           {/* Tab bar */}
           <div className="flex border-b border-slate-700/50 px-5">
@@ -121,6 +303,7 @@ export function SyncModal({ open, onClose, state, onImport }: SyncModalProps) {
               { id: "manual" as ActiveTab, labelFr: "Export / Import",   labelEn: "Export / Import", icon: <Copy className="h-3.5 w-3.5" /> },
             ]).map((tab) => (
               <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)}
+ main
                 className={cn(
                   "relative flex items-center gap-1.5 px-3 py-2.5 text-xs font-semibold transition-colors touch-manipulation",
                   activeTab === tab.id ? "text-cyan-400" : "text-slate-500 hover:text-slate-300"
@@ -133,6 +316,25 @@ export function SyncModal({ open, onClose, state, onImport }: SyncModalProps) {
               </button>
             ))}
           </div>
+
+ devin/1781378181-dashboard-component
+          <div className="border-t border-slate-700/50 my-4" />
+
+          {/* ═══ CODE IMPORT ═══ */}
+          <div>
+            <p className="text-xs text-slate-400 mb-2 flex items-center gap-1.5">
+              <Upload className="h-3.5 w-3.5" />
+              <span className="font-semibold text-slate-100">{t("importLabel")}</span>
+            </p>
+            <textarea value={importCode} onChange={(e) => setImportCode(e.target.value)}
+              placeholder={t("importPlaceholder")}
+              className="w-full rounded-md border border-slate-700/50 bg-slate-800/50 px-2.5 py-2 font-mono text-[10px] text-slate-300 placeholder:text-slate-600 resize-none h-16 focus:outline-none focus:border-cyan-500/50" />
+            {importError   && <p className="mt-1 text-xs text-red-400">{importError}</p>}
+            {importSuccess && (
+              <p className="mt-1 text-xs text-cyan-400 flex items-center gap-1">
+                <CheckCircle2 className="h-3 w-3" />
+                {t("importSuccess")}
+              </p>
 
           <div className="p-5 space-y-4">
 
@@ -270,6 +472,7 @@ export function SyncModal({ open, onClose, state, onImport }: SyncModalProps) {
                   </button>
                 </div>
               </>
+ main
             )}
           </div>
         </div>

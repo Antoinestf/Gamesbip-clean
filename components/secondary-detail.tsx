@@ -40,7 +40,7 @@ export function SecondaryDetail({
       <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={onClose} />
       <div className="fixed inset-x-3 bottom-3 top-3 z-50 flex items-center justify-center pointer-events-none md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-md">
         <div className={cn(
-          "pointer-events-auto relative w-full rounded-2xl border bg-slate-900/95 backdrop-blur-md shadow-2xl flex flex-col overflow-hidden",
+          "pointer-events-auto relative w-full rounded-2xl border bg-black/70 backdrop-blur-lg shadow-2xl flex flex-col overflow-hidden",
           "max-h-[calc(100dvh-24px)] md:max-h-[85vh]",
           completed ? "border-cyan-500/50" : "border-slate-700/50"
         )}>

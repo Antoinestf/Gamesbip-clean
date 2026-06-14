@@ -34,7 +34,7 @@ function CheckTile({
   return (
     <div
       onClick={onInfo}
-      className={`flex items-start gap-3 rounded-lg p-4 transition-all duration-200 bg-slate-900/80 backdrop-blur-md border ${isDone ? "border-cyan-500/50" : "border-slate-700/50"} ${onInfo ? "cursor-pointer hover:border-cyan-500/40" : ""}`}>
+      className={`flex items-start gap-3 rounded-lg p-4 transition-all duration-200 bg-black/60 backdrop-blur-lg border ${isDone ? "border-cyan-500/50" : "border-slate-700/50"} ${onInfo ? "cursor-pointer hover:border-cyan-500/40" : ""}`}>
       <button
         type="button"
         onClick={(e) => { e.stopPropagation(); onToggle(); }}
@@ -178,7 +178,7 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
   return (
     <div className="min-h-screen bg-slate-950">
       {/* Sticky header */}
-      <div className="sticky top-0 z-30 backdrop-blur-md bg-slate-900/80 border-b border-slate-700/50">
+      <div className="sticky top-0 z-30 backdrop-blur-lg bg-black/60 border-b border-slate-700/50">
         <div className="mx-auto max-w-6xl px-4 py-3">
           <div className="flex items-center gap-2 mb-2">
             <button type="button" onClick={onBack}
@@ -257,7 +257,7 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
                 return (
                   <div key={boss.id}
                     onClick={() => { setBossDetailBoss(boss); setBossDetailOpen(true); }}
-                    className={`rounded-lg p-4 flex items-center gap-3 transition-all duration-200 bg-slate-900/80 backdrop-blur-md border cursor-pointer hover:border-cyan-500/40 ${isDone ? "border-cyan-500/50" : "border-slate-700/50"}`}>
+                    className={`rounded-lg p-4 flex items-center gap-3 transition-all duration-200 bg-black/60 backdrop-blur-lg border cursor-pointer hover:border-cyan-500/40 ${isDone ? "border-cyan-500/50" : "border-slate-700/50"}`}>
                     <button type="button"
                       onClick={(e) => { e.stopPropagation(); toggle(boss.id); }}
                       className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-lg transition-all border-2 ${isDone ? "border-cyan-500 bg-cyan-500 text-white" : "border-slate-600"}`}>
@@ -420,7 +420,7 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
 
                 return (
                   <div key={weapon.id}
-                    className={`rounded-lg overflow-hidden bg-slate-900/80 backdrop-blur-md border ${allAspects ? "border-cyan-500/50" : "border-slate-700/50"}`}>
+                    className={`rounded-lg overflow-hidden bg-black/60 backdrop-blur-lg border ${allAspects ? "border-cyan-500/50" : "border-slate-700/50"}`}>
                     <div className={`flex items-center gap-3 px-4 py-3 border-b border-slate-700/50 ${allAspects ? "bg-cyan-900/20" : ""}`}>
                       <span className="text-xl">{weapon.emoji}</span>
                       <div className="flex-1 min-w-0 flex items-center gap-1.5 flex-wrap">
@@ -505,7 +505,7 @@ export function HadesTracker({ onBack }: HadesTrackerProps) {
         <>
           <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={() => setCollectibleDetail(null)} />
           <div className="fixed inset-x-3 bottom-3 top-3 z-50 flex items-center justify-center pointer-events-none md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-md">
-            <div className="pointer-events-auto relative w-full rounded-2xl border border-slate-700/50 bg-slate-900/95 backdrop-blur-md shadow-2xl overflow-hidden" style={{ maxHeight: "calc(100dvh - 24px)" }}>
+            <div className="pointer-events-auto relative w-full rounded-2xl border border-slate-700/50 bg-black/70 backdrop-blur-lg shadow-2xl overflow-hidden" style={{ maxHeight: "calc(100dvh - 24px)" }}>
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
               <div className="flex items-start gap-3 p-4 border-b border-slate-700/50">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xl border-2 border-cyan-500/50 bg-cyan-900/30 mt-0.5">
@@ -622,7 +622,7 @@ function BossDetail({
     <>
       <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={onClose} />
       <div className="fixed inset-x-3 bottom-3 top-3 z-50 flex items-center justify-center pointer-events-none md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-md">
-        <div className={`pointer-events-auto relative w-full rounded-2xl border bg-slate-900/95 backdrop-blur-md shadow-2xl flex flex-col overflow-hidden max-h-[calc(100dvh-24px)] md:max-h-[85vh] ${completed ? "border-cyan-500/50" : "border-slate-700/50"}`}>
+        <div className={`pointer-events-auto relative w-full rounded-2xl border bg-black/70 backdrop-blur-lg shadow-2xl flex flex-col overflow-hidden max-h-[calc(100dvh-24px)] md:max-h-[85vh] ${completed ? "border-cyan-500/50" : "border-slate-700/50"}`}>
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
 
           {/* Header */}
