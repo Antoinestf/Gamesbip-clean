@@ -120,6 +120,26 @@ function MissionContent({
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {activeTab === "details" && (
           <>
+            {mission.alertDescription && (
+              <div className={cn(
+                "rounded-lg border p-3.5",
+                mission.alertType === 'quest'
+                  ? "bg-orange-500/10 border-orange-500/30"
+                  : "bg-red-500/10 border-red-500/30"
+              )}>
+                <p className={cn("text-xs font-bold uppercase tracking-wide mb-1.5",
+                  mission.alertType === 'quest' ? "text-orange-400" : "text-red-400"
+                )}>
+                  {mission.alertType === 'quest'
+                    ? (lang === "en" ? "⚠ Point of No Return" : "⚠ Point de non-retour")
+                    : (lang === "en" ? "💎 Unique Item" : "💎 Objet unique")}
+                </p>
+                <p className="text-sm leading-relaxed text-slate-200">
+                  {lang === "en" && mission.alertDescription_en ? mission.alertDescription_en : mission.alertDescription}
+                </p>
+              </div>
+            )}
+
             {stock && (
               <div className="rounded-lg border border-red-500/40 bg-red-500/10 p-3">
                 <div className="flex items-center gap-2 mb-2">

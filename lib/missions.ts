@@ -44,6 +44,8 @@ export interface Mission {
   howToUnlock?: string;
   howToUnlock_en?: string;
   alertType?: "item" | "quest";
+  alertDescription?: string;
+  alertDescription_en?: string;
 }
 
 export interface Act {
@@ -70,6 +72,9 @@ export interface SecondaryMission {
   stockAlert?: StockAlert;
   tip?:        string;
   tip_en?:     string;
+  alertType?: "item" | "quest";
+  alertDescription?: string;
+  alertDescription_en?: string;
 }
 
 export interface CollectibleItem {
@@ -2260,6 +2265,9 @@ const acts: Act[] = [
         title_en: "Something Sensible (Option A)",
         description: "Franklin choisit de tuer Trevor — la fin tragique.",
         description_en: "Franklin chooses to kill Trevor — the tragic ending.",
+        alertType: "quest",
+        alertDescription: "🛑 POINT DE NON-RETOUR : Choisir l'Option A (Tuer Trevor) supprime définitivement le personnage et bloque toutes ses quêtes annexes. Choisissez l'Option C (Sauvetage) pour garantir le 100% sans rien rater.",
+        alertDescription_en: "🛑 POINT OF NO RETURN: Choosing Option A (Kill Trevor) permanently removes the character and locks all his side quests. Choose Option C (Deathwish) to guarantee 100% without missing anything.",
         goldMedals: ["Destin tragique : Éliminer Trevor en moins de 06:00"],
         goldMedals_en: ["Tragic fate: Eliminate Trevor in under 06:00"],
         startPoint: "Choix final de Franklin",
@@ -2294,6 +2302,9 @@ const acts: Act[] = [
         title_en: "The Time's Come (Option B)",
         description: "Franklin choisit de tuer Michael — la fin amère.",
         description_en: "Franklin chooses to kill Michael — the bitter ending.",
+        alertType: "quest",
+        alertDescription: "🛑 POINT DE NON-RETOUR : Choisir l'Option B (Tuer Michael) supprime définitivement le personnage et bloque toutes ses quêtes annexes. Choisissez l'Option C (Sauvetage) pour garantir le 100% sans rien rater.",
+        alertDescription_en: "🛑 POINT OF NO RETURN: Choosing Option B (Kill Michael) permanently removes the character and locks all his side quests. Choose Option C (Deathwish) to guarantee 100% without missing anything.",
         goldMedals: ["Chute fatale : Éliminer Michael en moins de 07:00"],
         goldMedals_en: ["Fatal fall: Eliminate Michael in under 07:00"],
         startPoint: "Choix final de Franklin",
@@ -2401,6 +2412,9 @@ export const secondaryMissions: SecondaryMission[] = [
     id: "lester-2",
     title: "Assassination Multi-Cibles",
     title_en: "The Multi Target Assassination",
+    alertType: "quest",
+    alertDescription: "💡 ASTUCE EN OR : Ne jouez PAS ces missions avant la fin de l'histoire (à l'exception de la première qui est obligatoire). Gardez-les pour la fin afin d'investir l'argent du dernier braquage en bourse et atteindre 2,1 milliards de dollars.",
+    alertDescription_en: "💡 GOLDEN TIP: Do NOT play these missions before finishing the story (except the first one which is mandatory). Save them for the end to invest the final heist money in stocks and reach $2.1 billion.",
     description: "Liquidez 4 directeurs d'une société de tabac pour provoquer la chute de leurs concurrents.",
     description_en: "Liquidate 4 tobacco company executives to cause their competitors to rise.",
     type: "Assassinat de Lester",
@@ -2440,6 +2454,9 @@ export const secondaryMissions: SecondaryMission[] = [
     id: "lester-3",
     title: "Assassination du Vice",
     title_en: "The Vice Assassination",
+    alertType: "quest",
+    alertDescription: "💡 ASTUCE EN OR : Ne jouez PAS ces missions avant la fin de l'histoire. Gardez-les pour la fin afin d'investir l'argent du dernier braquage en bourse.",
+    alertDescription_en: "💡 GOLDEN TIP: Do NOT play these missions before finishing the story. Save them for the end to invest the final heist money in stocks.",
     description: "Éliminez le PDG d'une entreprise technologique concurrente de Fruit Computers.",
     description_en: "Eliminate the CEO of a tech company, a competitor to Fruit Computers.",
     type: "Assassinat de Lester",
@@ -2475,6 +2492,9 @@ export const secondaryMissions: SecondaryMission[] = [
     id: "lester-4",
     title: "Assassination du Bus",
     title_en: "The Bus Assassination",
+    alertType: "quest",
+    alertDescription: "💡 ASTUCE EN OR : Ne jouez PAS ces missions avant la fin de l'histoire. Gardez-les pour la fin afin d'investir l'argent du dernier braquage en bourse.",
+    alertDescription_en: "💡 GOLDEN TIP: Do NOT play these missions before finishing the story. Save them for the end to invest the final heist money in stocks.",
     description: "Détruisez un bus contenant un dirigeant de Vapid. Pas de buy avant — achetez après.",
     description_en: "Destroy a bus carrying a Vapid executive. No buy before — invest after.",
     type: "Assassinat de Lester",
@@ -2510,6 +2530,9 @@ export const secondaryMissions: SecondaryMission[] = [
     id: "lester-5",
     title: "Assassination de la Construction",
     title_en: "The Construction Assassination",
+    alertType: "quest",
+    alertDescription: "💡 ASTUCE EN OR : Ne jouez PAS ces missions avant la fin de l'histoire. Gardez-les pour la fin afin d'investir l'argent du dernier braquage en bourse.",
+    alertDescription_en: "💡 GOLDEN TIP: Do NOT play these missions before finishing the story. Save them for the end to invest the final heist money in stocks.",
     description: "Éliminez un promoteur immobilier corrompu au sommet de son chantier.",
     description_en: "Eliminate a corrupt real estate developer at the top of his construction site.",
     type: "Assassinat de Lester",
@@ -2545,6 +2568,9 @@ export const secondaryMissions: SecondaryMission[] = [
     id: "sm-omega",
     title: "Morceaux de Vaisseau (Omega)",
     title_en: "Spaceship Parts (Omega)",
+    alertType: "item",
+    alertDescription: "💎 VÉHICULE UNIQUE : Ce buggy spatial aux phares bleus se débloque uniquement après avoir trouvé les 50 pièces de vaisseau spatial et terminé la mission secrète d'Omega.",
+    alertDescription_en: "💎 UNIQUE VEHICLE: This space buggy with blue headlights is only unlocked after finding all 50 spaceship parts and completing Omega's secret mission.",
     description: "Omega vous envoie collecter 50 morceaux de vaisseau spatial dans Los Santos.",
     description_en: "Omega sends you to collect 50 spaceship parts scattered across Los Santos.",
     type: "Inconnus & Détraqués",
@@ -2704,6 +2730,170 @@ export const secondaryMissions: SecondaryMission[] = [
     ],
     tip: "Approchez chaque cible à pied, sans arme. Criez-leur dessus (visée sans tirer) pour qu'ils se rendent vivants = double récompense.",
     tip_en: "Approach each target on foot, unarmed. Aim without shooting to make them surrender alive = double payout."
+  },
+  {
+    id: "sm-simeon-event",
+    title: "Événement : Simeon Yetarian",
+    title_en: "Event: Simeon Yetarian",
+    description: "Événement aléatoire à la concession automobile de Simeon.",
+    description_en: "Random event at Simeon's car dealership.",
+    type: "Événements Aléatoires",
+    character: "Franklin",
+    protagonist: "franklin",
+    zone: "los-santos-centre",
+    reward: "Complétion 100%",
+    reward_en: "100% completion",
+    steps: [
+      "Terminez la mission 'Saisie' (mission principale).",
+      "Allez à la concession de Simeon AVANT de lancer la mission 'Casse de la bijouterie'.",
+      "Déclenchez l'événement et terminez-le."
+    ],
+    steps_en: [
+      "Complete the 'Repossession' story mission.",
+      "Go to Simeon's dealership BEFORE starting 'The Jewel Store Job'.",
+      "Trigger the event and complete it."
+    ],
+    alertType: "quest",
+    alertDescription: "🛑 POINT DE NON-RETOUR : Cet événement à la concession automobile doit absolument être fait APRÈS la mission 'Saisie' mais AVANT de lancer la mission 'Casse de la bijouterie'. Sinon, la concession ferme définitivement.",
+    alertDescription_en: "🛑 POINT OF NO RETURN: This event at the car dealership must be done AFTER the 'Repossession' mission but BEFORE starting 'The Jewel Store Job'. Otherwise, the dealership closes permanently."
+  },
+  {
+    id: "sm-altruists",
+    title: "Secte des Altruistes (Livraisons)",
+    title_en: "Altruist Cult (Deliveries)",
+    description: "Livrez des auto-stoppeurs à la secte des Altruistes dans les montagnes avec Trevor.",
+    description_en: "Deliver hitchhikers to the Altruist Cult in the mountains with Trevor.",
+    type: "Événements Aléatoires",
+    character: "Trevor",
+    protagonist: "trevor",
+    zone: "blaine-county",
+    reward: "Fusillade unique + mallettes d'argent (100 000$)",
+    reward_en: "Unique shootout + cash briefcases ($100,000)",
+    steps: [
+      "Récupérez les auto-stoppeurs sur la carte avec Trevor.",
+      "Au lieu de les ramener à destination, livrez-en au moins 4 à la secte dans les montagnes.",
+      "Après 4 livraisons, la fusillade se déclenche automatiquement.",
+      "Survivez à l'assaut et récupérez les 4 mallettes d'argent dans le camp."
+    ],
+    steps_en: [
+      "Pick up hitchhikers on the map with Trevor.",
+      "Instead of taking them to their destination, deliver at least 4 to the cult in the mountains.",
+      "After 4 deliveries, the shootout triggers automatically.",
+      "Survive the assault and collect all 4 cash briefcases in the camp."
+    ],
+    alertType: "quest",
+    alertDescription: "🛑 MISSABLE : Ne ramenez pas tous les auto-stoppeurs à leur vraie destination avec Trevor. Livrez-en au moins 4 à la secte dans les montagnes pour débloquer la fusillade unique et les mallettes d'argent.",
+    alertDescription_en: "🛑 MISSABLE: Don't take all hitchhikers to their real destination with Trevor. Deliver at least 4 to the cult in the mountains to unlock the unique shootout and cash briefcases."
+  },
+  {
+    id: "sm-packie-taliana",
+    title: "Recrutement : Packie McReary & Taliana Martinez",
+    title_en: "Recruitment: Packie McReary & Taliana Martinez",
+    description: "Deux braqueurs d'élite recrutables via des événements aléatoires.",
+    description_en: "Two elite heist crew members recruitable through random events.",
+    type: "Événements Aléatoires",
+    character: "Tous",
+    protagonist: "all",
+    zone: "los-santos-centre",
+    reward: "Braqueurs d'élite à bas coût pour les casses",
+    reward_en: "Elite low-cost heist crew members",
+    steps: [
+      "Packie : trouvez-le lors d'un braquage de pharmacie raté (événement aléatoire). Aidez-le à s'enfuir en voiture.",
+      "Taliana : trouvez-la après un accident de voiture sur une route isolée (événement aléatoire). Amenez-la à l'hôpital à temps.",
+      "Après les avoir sauvés, ils apparaîtront dans la liste de recrutement lors des braquages."
+    ],
+    steps_en: [
+      "Packie: find him during a botched pharmacy robbery (random event). Help him escape by car.",
+      "Taliana: find her after a car crash on a remote road (random event). Get her to the hospital in time.",
+      "After saving them, they'll appear in the heist crew recruitment list."
+    ],
+    alertType: "quest",
+    alertDescription: "🛑 MISSABLE : Ces deux braqueurs d'élite se recrutent via des événements aléatoires (Braquage de pharmacie / Accident de voiture). Si vous les ignorez ou les tuez par erreur, ils seront définitivement indisponibles pour vos braquages.",
+    alertDescription_en: "🛑 MISSABLE: These two elite heist crew members are recruited through random events (Pharmacy robbery / Car crash). If you ignore them or kill them by mistake, they'll be permanently unavailable for your heists."
+  },
+  {
+    id: "sm-abigail",
+    title: "Sous la surface (Abigail)",
+    title_en: "What Lies Beneath (Abigail)",
+    description: "Abigail engage Michael pour récupérer des pièces sous-marines dans l'océan.",
+    description_en: "Abigail hires Michael to recover underwater parts from the ocean.",
+    type: "Inconnus & Détraqués",
+    character: "Michael",
+    protagonist: "michael",
+    zone: "offshore",
+    reward: "10$ par pièce + Declasse Asea (véhicule unique)",
+    reward_en: "$10 per part + Declasse Asea (unique vehicle)",
+    steps: [
+      "Trouvez Abigail sur la jetée de Sonar Collections (zone Port & Offshore).",
+      "Collectez les 30 pièces sous-marines avec le sous-marin.",
+      "Retournez voir Abigail pour la cinématique finale.",
+      "Volez la Declasse Asea de la cinématique — c'est le seul moyen de l'obtenir."
+    ],
+    steps_en: [
+      "Find Abigail at the Sonar Collections pier (Port & Offshore zone).",
+      "Collect all 30 underwater parts using the submarine.",
+      "Return to Abigail for the final cutscene.",
+      "Steal the Declasse Asea during the cutscene — it's the only way to get it."
+    ],
+    alertType: "item",
+    alertDescription: "💎 OBJET UNIQUE : La Declasse Asea. C'est l'une des voitures les plus rares du jeu. Le seul moyen fiable de l'obtenir est de la voler à Abigail à la toute fin de cette cinématique.",
+    alertDescription_en: "💎 UNIQUE ITEM: The Declasse Asea. One of the rarest cars in the game. The only reliable way to get it is to steal it from Abigail at the very end of this cutscene."
+  },
+  {
+    id: "sm-thelma-louise",
+    title: "Easter Egg : Thelma & Louise",
+    title_en: "Easter Egg: Thelma & Louise",
+    description: "Un Easter Egg cinématographique caché sur les falaises du Mont Chiliad.",
+    description_en: "A hidden cinematic Easter Egg on the cliffs of Mount Chiliad.",
+    type: "Easter Eggs & Secrets",
+    character: "Tous",
+    protagonist: "all",
+    zone: "blaine-county",
+    reward: "Tornado Mariachi (véhicule unique)",
+    reward_en: "Mariachi Tornado (unique vehicle)",
+    steps: [
+      "Rendez-vous sur la falaise de la réserve naturelle du Mont Chiliad.",
+      "Attendez exactement 19h00 en jeu.",
+      "Observez la Tornado Mariachi en pleine poursuite avec la police.",
+      "Volez le véhicule avant qu'il ne tombe de la falaise."
+    ],
+    steps_en: [
+      "Head to the cliff at the Mount Chiliad nature reserve.",
+      "Wait until exactly 7:00 PM in-game time.",
+      "Watch the Mariachi Tornado in a police chase.",
+      "Steal the vehicle before it falls off the cliff."
+    ],
+    alertType: "item",
+    alertDescription: "💎 VÉHICULE UNIQUE : La Tornado Mariachi. Cette vieille voiture rouillée avec des guitares à l'arrière apparaît uniquement à 19h00 précises sur une falaise de la réserve naturelle du Mont Chiliad, lors d'une poursuite avec la police.",
+    alertDescription_en: "💎 UNIQUE VEHICLE: The Mariachi Tornado. This rusty old car with guitars in the back only appears at exactly 7:00 PM on a cliff at the Mount Chiliad nature reserve, during a police chase."
+  },
+  {
+    id: "sm-epsilon-tractor",
+    title: "Le Tracteur Epsilon",
+    title_en: "The Epsilon Tractor",
+    description: "Terminez les quêtes de la secte Epsilon avec Michael pour obtenir un véhicule unique.",
+    description_en: "Complete the Epsilon Program questline with Michael to obtain a unique vehicle.",
+    type: "Inconnus & Détraqués",
+    character: "Michael",
+    protagonist: "michael",
+    zone: "blaine-county",
+    reward: "Tracteur Epsilon (véhicule unique)",
+    reward_en: "Epsilon Tractor (unique vehicle)",
+    steps: [
+      "Complétez toutes les missions Epsilon avec Michael (longue série de quêtes).",
+      "À la fin, vous avez un choix : accepter le tracteur OU voler l'argent.",
+      "Choisissez d'accepter le tracteur (le 'mauvais' choix financier) pour obtenir le véhicule unique.",
+      "Si vous volez l'argent, le tracteur est perdu à jamais."
+    ],
+    steps_en: [
+      "Complete all Epsilon missions with Michael (long questline).",
+      "At the end, you have a choice: accept the tractor OR steal the money.",
+      "Choose to accept the tractor (the 'bad' financial choice) to get the unique vehicle.",
+      "If you steal the money, the tractor is lost forever."
+    ],
+    alertType: "item",
+    alertDescription: "💎 VÉHICULE UNIQUE : Obtenu en terminant la très longue suite de quêtes de la secte Epsilon avec Michael, à condition de faire le 'mauvais' choix à la fin (accepter le tracteur au lieu de voler l'argent).",
+    alertDescription_en: "💎 UNIQUE VEHICLE: Obtained by completing the very long Epsilon Program questline with Michael, provided you make the 'bad' choice at the end (accept the tractor instead of stealing the money)."
   }
 ];
 
