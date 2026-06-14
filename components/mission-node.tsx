@@ -57,12 +57,12 @@ export function MissionNode({ mission, completed, active, onClick }: MissionNode
             {title}
           </h3>
           {mission.alertType === "item" && (
-            <span className="text-[9px] px-1.5 py-0.5 rounded ml-2 bg-red-100 text-red-700 font-semibold shrink-0">
+            <span className="bg-red-500/20 text-red-400 text-[9px] px-1.5 py-0.5 rounded font-medium tracking-wide shrink-0">
               {lang === "en" ? "Unique item" : "Objet unique"}
             </span>
           )}
           {mission.alertType === "quest" && (
-            <span className="text-[9px] px-1.5 py-0.5 rounded ml-2 bg-orange-100 text-orange-700 font-semibold shrink-0">
+            <span className="bg-orange-500/20 text-orange-400 text-[9px] px-1.5 py-0.5 rounded font-medium tracking-wide shrink-0">
               {lang === "en" ? "Point of no return" : "Point de non-retour"}
             </span>
           )}
