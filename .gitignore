@@ -1,0 +1,20 @@
+# Dépendances (Le plus lourd)
+node_modules/
+
+# Fichiers d'environnement (Sécurité)
+.env
+.env.local
+.env.*.local
+
+# Fichiers de build et logs
+.next/
+dist/
+out/
+build/
+*.log
+*.tmp
+.vercel/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
