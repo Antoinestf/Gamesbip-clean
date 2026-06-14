@@ -33,8 +33,7 @@ const GAME_COVERS: Record<string, string> = {
   hades2: "/hades.avif",
   sts2:   "/sts.webp",
   eldenring: "/eldenring.webp",
- devin/1781378181-dashboard-component
-  "re-requiem": "/images/re-requiem-cover.jpg",
+ 
 
    "re-requiem": "/resident.webp",
  main
