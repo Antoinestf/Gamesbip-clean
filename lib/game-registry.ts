@@ -56,6 +56,18 @@ export const GAME_REGISTRY: GameMeta[] = [
     badge:   { fr: "Actif",                                      en: "Active"                    },
   },
   {
+ 
+    id:         "re-requiem",
+    title:      "Resident Evil Requiem",
+    subtitle:   "Resident Evil Requiem",
+    year:       "2025",
+    platform:   "PS5 / Xbox / PC",
+    storageKey: "gamesbip_rerequiem_progress",
+    status:     "active",
+    tagline: { fr: "Guide de survie complet",  en: "Full Survival Guide"  },
+    badge:   { fr: "Nouveau",                  en: "New"                  },
+  },
+
     id: "re-requiem",
     title: "Resident Evil Requiem",
     coverImage: "/resident.webp",//
@@ -71,6 +83,7 @@ export const GAME_REGISTRY: GameMeta[] = [
       en: "New"
     }
   }
+main
 ];
 
 export function getGameMeta(id: string): GameMeta | undefined {

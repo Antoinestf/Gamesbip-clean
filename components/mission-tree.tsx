@@ -168,7 +168,7 @@ export function MissionTree({ onBack }: MissionTreeProps) {
   return (
     <main className="min-h-screen bg-slate-950">
       {/* STICKY HEADER */}
-      <div className="sticky top-0 z-30 border-b border-slate-700/50 bg-slate-900/80 backdrop-blur-md">
+      <div className="sticky top-0 z-30 border-b border-slate-700/50 bg-black/60 backdrop-blur-lg">
         <div className="mx-auto max-w-6xl px-4 py-3">
           <div className="flex items-center gap-2 mb-2">
             <button type="button" onClick={onBack} title={lang === "fr" ? "Retour" : "Back"}
@@ -333,7 +333,7 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                 </section>
               );
             })}
-            <div className="mt-4 flex items-center gap-3 rounded-lg border border-slate-700/50 bg-slate-900/80 backdrop-blur-md px-4 py-3">
+            <div className="mt-4 flex items-center gap-3 rounded-lg border border-slate-700/50 bg-black/60 backdrop-blur-lg px-4 py-3">
               <Trophy className="h-4 w-4 text-cyan-400 shrink-0" />
               <Progress value={storyPct} className="h-2 flex-1" />
               <span className="font-mono text-sm font-bold text-cyan-400 shrink-0">
@@ -476,7 +476,7 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                         <div key={item.id}
                           onClick={() => { setCollectibleDetailItem(item); setCollectibleDetailOpen(true); }}
                           className={cn(
-                            "flex w-full items-start gap-3 rounded-lg border p-4 text-left transition-all bg-slate-900/80 backdrop-blur-md cursor-pointer hover:border-cyan-500/40",
+                            "flex w-full items-start gap-3 rounded-lg border p-4 text-left transition-all bg-black/60 backdrop-blur-lg cursor-pointer hover:border-cyan-500/40",
                             isDone ? "border-cyan-500/50" : "border-slate-700/50"
                           )}>
                           <button type="button"
@@ -540,7 +540,7 @@ export function MissionTree({ onBack }: MissionTreeProps) {
                         <div key={activity.id}
                           onClick={() => { setSecDetailActivity(activity); setSecDetailMission(null); setSecDetailTab("details"); setSecDetailOpen(true); }}
                           className={cn(
-                            "flex w-full items-start gap-3 rounded-lg border p-3 text-left transition-all bg-slate-900/80 backdrop-blur-md cursor-pointer hover:border-cyan-500/40",
+                            "flex w-full items-start gap-3 rounded-lg border p-3 text-left transition-all bg-black/60 backdrop-blur-lg cursor-pointer hover:border-cyan-500/40",
                             isDone ? "border-cyan-500/50" : "border-slate-700/50"
                           )}>
                           <button type="button"
@@ -704,7 +704,7 @@ function SecondaryMissionCard({
     <div
       onClick={() => onOpen(sm, "details")}
       className={cn(
-        "rounded-lg border p-4 transition-all bg-slate-900/80 backdrop-blur-md cursor-pointer hover:border-cyan-500/40",
+        "rounded-lg border p-4 transition-all bg-black/60 backdrop-blur-lg cursor-pointer hover:border-cyan-500/40",
         isDone ? "border-cyan-500/50" : "border-slate-700/50",
         isLester && !isDone && "border-l-2 border-l-red-500"
       )}>
@@ -846,7 +846,7 @@ function CollectibleDetail({
       <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={onClose} />
       <div className="fixed inset-x-3 bottom-3 top-3 z-50 flex items-center justify-center pointer-events-none md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-md">
         <div className={cn(
-          "pointer-events-auto relative w-full rounded-2xl border bg-slate-900/95 backdrop-blur-md shadow-2xl flex flex-col overflow-hidden",
+          "pointer-events-auto relative w-full rounded-2xl border bg-black/70 backdrop-blur-lg shadow-2xl flex flex-col overflow-hidden",
           "max-h-[calc(100dvh-24px)] md:max-h-[85vh]",
           completed ? "border-cyan-500/50" : "border-slate-700/50"
         )}>

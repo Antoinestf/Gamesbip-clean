@@ -12,7 +12,10 @@ import { useLanguage } from "@/lib/language-context";
 import { LangToggle } from "@/components/lang-toggle";
 import { cn } from "@/lib/utils";
 
+ devin/1781378181-dashboard-component
+type GameView = "home" | "gta5" | "hades2" | "sts2" | "eldenring" | "re-requiem" | "dashboard";
 type GameView = "home" | "gta5" | "hades2" | "sts2" | "eldenring" | "dashboard"; "re-requiem"
+ main
 
 interface HomeScreenProps {
   onSelectGame: (view: GameView) => void;
@@ -30,7 +33,11 @@ const GAME_COVERS: Record<string, string> = {
   hades2: "/hades.avif",
   sts2:   "/sts.webp",
   eldenring: "/eldenring.webp",
+ devin/1781378181-dashboard-component
+  "re-requiem": "/images/re-requiem-cover.jpg",
+
    "re-requiem": "/resident.webp",
+ main
 };
 
 export function HomeScreen({ onSelectGame }: HomeScreenProps) {
@@ -115,7 +122,7 @@ export function HomeScreen({ onSelectGame }: HomeScreenProps) {
             <button
               type="button"
               onClick={() => onSelectGame("dashboard")}
-              className="flex items-center gap-1.5 rounded-lg border border-slate-700/50 bg-slate-800/70 px-3 py-1.5 text-xs font-bold text-cyan-400 transition-colors hover:bg-slate-700/70 hover:border-cyan-500/50"
+              className="flex items-center gap-1.5 rounded-lg border border-slate-700/50 bg-black/50 backdrop-blur-md px-3 py-1.5 text-xs font-bold text-cyan-400 transition-colors hover:bg-black/70 hover:border-cyan-500/50"
             >
               <LayoutDashboard className="h-3.5 w-3.5" />
               Dashboard
@@ -128,7 +135,7 @@ export function HomeScreen({ onSelectGame }: HomeScreenProps) {
       {/* Game grid */}
       <main className="relative flex-1 mx-auto w-full max-w-6xl px-4 pb-28 pt-6 z-10">
         {/* Welcome banner */}
-        <div className="mb-6 rounded-2xl px-5 py-4 bg-slate-900/80 backdrop-blur-md border border-slate-700/50">
+        <div className="mb-6 rounded-2xl px-5 py-4 bg-black/60 backdrop-blur-lg border border-slate-700/50">
           <p className="text-sm sm:text-base font-medium leading-relaxed text-center text-slate-300">
             {lang === "fr"
               ? "Bienvenue sur Game\u2019s Bip ! Vos trackers de compl\u00e9tion et tutoriels de A \u00e0 Z pour poncer vos jeux pr\u00e9f\u00e9r\u00e9s \u00e0 100%, sans pubs invasives."
@@ -182,11 +189,16 @@ export function HomeScreen({ onSelectGame }: HomeScreenProps) {
                 )}
 
                 {/* Card content */}
-                <div className="relative flex flex-col flex-1 p-5">
+                <div className="relative flex flex-col flex-1 p-5 bg-black/40 backdrop-blur-sm">
                   {/* Year + badge */}
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono text-slate-500">{game.year}</span>
-                    <span className="rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide bg-cyan-900/50 text-cyan-400 border border-cyan-700/50">
+                    <span className={cn(
+                      "rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide border",
+                      badge === "Nouveau" || badge === "New"
+                        ? "bg-emerald-900/50 text-emerald-400 border-emerald-700/50"
+                        : "bg-cyan-900/50 text-cyan-400 border-cyan-700/50"
+                    )}>
                       {badge}
                     </span>
                   </div>

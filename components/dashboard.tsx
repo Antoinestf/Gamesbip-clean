@@ -168,7 +168,7 @@ export function Dashboard({ onBack }: DashboardProps) {
 
       <main className="mx-auto w-full max-w-5xl px-4 pb-24">
         {/* Global progress */}
-        <section className="mb-10 rounded-2xl border border-slate-700/50 bg-slate-900/80 backdrop-blur-md p-6">
+        <section className="mb-10 rounded-2xl border border-slate-700/50 bg-black/60 backdrop-blur-lg p-6">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-xs font-bold uppercase tracking-widest text-slate-400">
               {lang === "fr" ? "Progression globale" : "Overall Progress"}
@@ -199,7 +199,7 @@ export function Dashboard({ onBack }: DashboardProps) {
               return (
                 <div
                   key={game.id}
-                  className="relative flex flex-col items-center rounded-2xl border border-slate-700/50 bg-slate-900/80 backdrop-blur-md p-6 overflow-hidden"
+                  className="relative flex flex-col items-center rounded-2xl border border-slate-700/50 bg-black/60 backdrop-blur-lg p-6 overflow-hidden"
                 >
                   {/* Background cover (subtle) */}
                   {GAME_COVERS[game.id] && (

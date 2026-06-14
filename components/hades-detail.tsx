@@ -71,7 +71,7 @@ export function HadesDetail({ item, open, onOpenChange, completed, onToggleCompl
     <>
       <div className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm" onClick={() => onOpenChange(false)} />
       <div className="fixed inset-x-3 bottom-3 top-3 z-50 flex items-center justify-center pointer-events-none md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-md">
-        <div className="pointer-events-auto relative w-full flex flex-col overflow-hidden rounded-2xl bg-slate-900/95 backdrop-blur-md border border-slate-700/50 shadow-2xl"
+        <div className="pointer-events-auto relative w-full flex flex-col overflow-hidden rounded-2xl bg-black/70 backdrop-blur-lg border border-slate-700/50 shadow-2xl"
           style={{ maxHeight: "calc(100dvh - 24px)" }}>
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
 

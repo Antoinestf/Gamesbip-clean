@@ -27,7 +27,7 @@ export function SupportBanner({ gameId, className }: SupportBannerProps) {
   const text = TEXTS[gameId][lang as "fr" | "en"];
 
   return (
-    <div className={`rounded-xl p-4 bg-slate-900/80 backdrop-blur-md border border-slate-700/50 ${className ?? ""}`}>
+    <div className={`rounded-xl p-4 bg-black/60 backdrop-blur-lg border border-slate-700/50 ${className ?? ""}`}>
       <p className="text-sm text-center leading-relaxed font-medium text-slate-300">
         ☕ {text}
       </p>
