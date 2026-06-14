@@ -56,6 +56,7 @@ export const GAME_REGISTRY: GameMeta[] = [
     badge:   { fr: "Actif",                                      en: "Active"                    },
   },
   {
+ devin/1781378181-dashboard-component
     id:         "re-requiem",
     title:      "Resident Evil Requiem",
     subtitle:   "Resident Evil Requiem",
@@ -66,6 +67,24 @@ export const GAME_REGISTRY: GameMeta[] = [
     tagline: { fr: "Guide de survie complet",  en: "Full Survival Guide"  },
     badge:   { fr: "Nouveau",                  en: "New"                  },
   },
+
+    id: "re-requiem",
+    title: "Resident Evil Requiem",
+    slug: "/re-requiem",
+    coverImage: "/resident.webp",//
+    progress: 0,
+    isNew: true,
+    status: "active",
+    tagline: {
+      fr: "Survivre à l'horreur",
+      en: "Survive the horror"
+    },
+    badge: {
+      fr: "Nouveau",
+      en: "New"
+    }
+  }
+main
 ];
 
 export function getGameMeta(id: string): GameMeta | undefined {

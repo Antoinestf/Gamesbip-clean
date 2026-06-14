@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useEffect, useState } from "react";
 import { ArrowLeft, Award } from "lucide-react";
@@ -91,8 +91,15 @@ interface DashboardProps {
 }
 
 export function Dashboard({ onBack }: DashboardProps) {
+  // 1. TOUS LES HOOKS DOIVENT ÊTRE EN HAUT
+  const [isMounted, setIsMounted] = useState(false);
   const { lang } = useLanguage();
   const [games, setGames] = useState<GameProgress[]>([]);
+
+  // 2. LES ACTIONS AU CHARGEMENT
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const result: GameProgress[] = [];
@@ -107,6 +114,12 @@ export function Dashboard({ onBack }: DashboardProps) {
     }
     setGames(result);
   }, []);
+
+  // 3. LA SÉCURITÉ POUR L'HYDRATATION (Toujours APRES les hooks !)
+  if (!isMounted) {
+    return null;
+  }
+ 
 
   const globalPct =
     games.length > 0

@@ -12,7 +12,10 @@ import { useLanguage } from "@/lib/language-context";
 import { LangToggle } from "@/components/lang-toggle";
 import { cn } from "@/lib/utils";
 
+ devin/1781378181-dashboard-component
 type GameView = "home" | "gta5" | "hades2" | "sts2" | "eldenring" | "re-requiem" | "dashboard";
+type GameView = "home" | "gta5" | "hades2" | "sts2" | "eldenring" | "dashboard"; "re-requiem"
+ main
 
 interface HomeScreenProps {
   onSelectGame: (view: GameView) => void;
@@ -22,6 +25,7 @@ const GAME_TOTALS: Record<string, number> = {
   gta5:   totalMissions + totalSecondary + totalCollectibleItems + totalActivities,
   hades2: totalHades,
   sts2:   totalSts2,
+  "re-requiem": 0,
 };
 
 const GAME_COVERS: Record<string, string> = {
@@ -29,7 +33,11 @@ const GAME_COVERS: Record<string, string> = {
   hades2: "/hades.avif",
   sts2:   "/sts.webp",
   eldenring: "/eldenring.webp",
+ devin/1781378181-dashboard-component
   "re-requiem": "/images/re-requiem-cover.jpg",
+
+   "re-requiem": "/resident.webp",
+ main
 };
 
 export function HomeScreen({ onSelectGame }: HomeScreenProps) {
@@ -59,7 +67,15 @@ export function HomeScreen({ onSelectGame }: HomeScreenProps) {
     console.log('Changement demandé vers:', game.id, game);
     onSelectGame(game.id as GameView);
   }
+  const [isMounted, setIsMounted] = useState(false);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
   return (
     <div className="min-h-screen flex flex-col">
       {/* Triptych fixed background */}
@@ -91,7 +107,7 @@ export function HomeScreen({ onSelectGame }: HomeScreenProps) {
           <div>
             <div className="mb-3">
               <span className="text-[10px] font-bold uppercase tracking-[0.35em] text-slate-400">
-                {lang === "fr" ? "Votre Hub de Compl\u00e9tion" : "Your Completion Hub"}
+              Votre Hub de Complétion
               </span>
             </div>
             <h1 className="text-5xl font-black tracking-tighter sm:text-6xl text-slate-100">
@@ -99,9 +115,7 @@ export function HomeScreen({ onSelectGame }: HomeScreenProps) {
               <span className="text-cyan-400">Bip</span>
             </h1>
             <p className="mt-2 text-sm font-medium max-w-xs text-slate-300">
-              {lang === "fr"
-                ? "Atteignez les 100% sur tous vos jeux favoris."
-                : "Reach 100% completion on all your favorite games."}
+            Atteignez les 100% sur tous vos jeux favoris.
             </p>
           </div>
           <div className="flex items-center gap-3 pt-2 shrink-0">
@@ -262,3 +276,4 @@ export function HomeScreen({ onSelectGame }: HomeScreenProps) {
     </div>
   );
 }
+

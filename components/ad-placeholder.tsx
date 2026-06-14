@@ -13,7 +13,7 @@ export function AdPlaceholder() {
     >
       <div className="flex h-full items-center justify-center gap-3 px-4">
         <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500">
-          {lang === "fr" ? "[Espace Partenaire — Game's Bip]" : "[Partner Space — Game's Bip]"}
+        [Espace Partenaire — Game's Bip]
         </span>
       </div>
     </div>
