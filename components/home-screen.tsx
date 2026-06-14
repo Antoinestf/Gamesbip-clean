@@ -108,7 +108,7 @@ export function HomeScreen({ onSelectGame }: HomeScreenProps) {
             <button
               type="button"
               onClick={() => onSelectGame("dashboard")}
-              className="flex items-center gap-1.5 rounded-lg border border-slate-700/50 bg-slate-800/70 px-3 py-1.5 text-xs font-bold text-cyan-400 transition-colors hover:bg-slate-700/70 hover:border-cyan-500/50"
+              className="flex items-center gap-1.5 rounded-lg border border-slate-700/50 bg-black/50 backdrop-blur-md px-3 py-1.5 text-xs font-bold text-cyan-400 transition-colors hover:bg-black/70 hover:border-cyan-500/50"
             >
               <LayoutDashboard className="h-3.5 w-3.5" />
               Dashboard
@@ -121,7 +121,7 @@ export function HomeScreen({ onSelectGame }: HomeScreenProps) {
       {/* Game grid */}
       <main className="relative flex-1 mx-auto w-full max-w-6xl px-4 pb-28 pt-6 z-10">
         {/* Welcome banner */}
-        <div className="mb-6 rounded-2xl px-5 py-4 bg-slate-900/80 backdrop-blur-md border border-slate-700/50">
+        <div className="mb-6 rounded-2xl px-5 py-4 bg-black/60 backdrop-blur-lg border border-slate-700/50">
           <p className="text-sm sm:text-base font-medium leading-relaxed text-center text-slate-300">
             {lang === "fr"
               ? "Bienvenue sur Game\u2019s Bip ! Vos trackers de compl\u00e9tion et tutoriels de A \u00e0 Z pour poncer vos jeux pr\u00e9f\u00e9r\u00e9s \u00e0 100%, sans pubs invasives."
@@ -175,7 +175,7 @@ export function HomeScreen({ onSelectGame }: HomeScreenProps) {
                 )}
 
                 {/* Card content */}
-                <div className="relative flex flex-col flex-1 p-5">
+                <div className="relative flex flex-col flex-1 p-5 bg-black/40 backdrop-blur-sm">
                   {/* Year + badge */}
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono text-slate-500">{game.year}</span>

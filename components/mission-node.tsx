@@ -24,7 +24,7 @@ export function MissionNode({ mission, completed, active, onClick }: MissionNode
       onClick={onClick}
       className={cn(
         "group relative flex w-full items-center gap-3 rounded-lg border p-4 transition-all cursor-pointer",
-        "bg-slate-900/80 backdrop-blur-md",
+        "bg-black/60 backdrop-blur-lg",
         completed
           ? "border-cyan-500/50"
           : "border-slate-700/50 hover:border-cyan-500/40",

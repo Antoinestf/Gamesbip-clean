@@ -49,7 +49,7 @@ export function SyncModal({ open, onClose, state, onImport }: SyncModalProps) {
     <>
       <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm" onClick={onClose} />
       <div className="fixed inset-x-4 top-1/2 z-50 -translate-y-1/2 pointer-events-none flex justify-center">
-        <div className="pointer-events-auto w-full max-w-sm rounded-2xl border border-slate-700/50 bg-slate-900/95 backdrop-blur-md p-5 shadow-2xl">
+        <div className="pointer-events-auto w-full max-w-sm rounded-2xl border border-slate-700/50 bg-black/70 backdrop-blur-lg p-5 shadow-2xl">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-base font-bold text-slate-100">{t("syncTitle")}</h2>
             <button type="button" onClick={onClose} className="rounded-md p-1 text-slate-400 hover:text-slate-100 transition-colors touch-manipulation">

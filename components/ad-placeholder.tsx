@@ -7,7 +7,7 @@ export function AdPlaceholder() {
 
   return (
     <div
-      className="fixed bottom-0 inset-x-0 z-20 border-t border-slate-700/50 bg-slate-900/80 backdrop-blur-md"
+      className="fixed bottom-0 inset-x-0 z-20 border-t border-slate-700/50 bg-black/60 backdrop-blur-lg"
       style={{ height: "44px" }}
       aria-label="Advertisement placeholder"
     >
