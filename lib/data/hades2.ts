@@ -26,6 +26,7 @@ export interface WeaponAspect {
   name:        BiText;
   description: BiText;
   unlockHint?: BiText;
+  solution?:   BiText;
 }
 
 export interface HadesWeapon {
@@ -176,6 +177,8 @@ export const weapons: HadesWeapon[] = [
         id: "sceptre-melinoe",
         name:        { fr: "Aspect de Mélinoé",   en: "Aspect of Melinoë"          },
         description: { fr: "Forme de base.",       en: "Base form."                 },
+        solution:    { fr: "L'aspect idéal pour découvrir le jeu. Concentrez-vous sur les bienfaits d'Apollon pour agrandir la taille de vos attaques, ou d'Héphaïstos pour ajouter de lourds dégâts de zone sur votre attaque Oméga. Gardez vos ennemis à distance.",
+                       en: "The ideal aspect to discover the game. Focus on Apollo boons to increase your attack size, or Hephaestus boons to add heavy area damage to your Omega attack. Keep your enemies at range." },
       },
       {
         id: "sceptre-circe",
@@ -184,6 +187,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Transforms nearby foes into harmless creatures."        },
         unlockHint:  { fr: "Parler à Hécate + 5 Psy",
                        en: "Speak to Hecate + 5 Psyche"                            },
+        solution:    { fr: "Tout repose sur le buff de Sérénité. La solution est de jouer très agressif avec vos attaques de base pour charger la jauge, puis de vider toute votre Magie avec vos attaques Oméga une fois le buff actif. Les bienfaits de Zeus (éclairs) s'associent parfaitement avec la vitesse d'attaque élevée.",
+                       en: "Everything revolves around the Serenity buff. Play very aggressively with basic attacks to charge the gauge, then dump all your Magick with Omega attacks once the buff is active. Zeus boons (lightning) pair perfectly with the high attack speed." },
       },
       {
         id: "sceptre-momus",
@@ -192,6 +197,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Rapid strike succession — increased critical chance."   },
         unlockHint:  { fr: "Offrir Nectar / Épreuves + 10 Psy",
                        en: "Give Nectar / Trials + 10 Psyche"                      },
+        solution:    { fr: "Cet aspect permet de jouer sur le soin et les dégâts de zone. Abusez de votre Technique Oméga à distance. C'est l'un des aspects les plus sécurisants pour monter dans les hauts niveaux de chaleur, surtout combiné avec les bienfaits de Poséidon sur la technique.",
+                       en: "This aspect lets you play around healing and area damage. Abuse your Omega Special at range. It's one of the safest aspects for climbing high Heat levels, especially combined with Poseidon boons on Special." },
       },
     ],
   },
@@ -208,6 +215,8 @@ export const weapons: HadesWeapon[] = [
         id: "lames-melinoe",
         name:        { fr: "Aspect de Mélinoé",   en: "Aspect of Melinoë"          },
         description: { fr: "Forme de base.",       en: "Base form."                 },
+        solution:    { fr: "Une arme redoutable pour le corps-à-corps. Privilégiez les dégâts dans le dos (Backstab) avec le sort d'immobilisation d'Hécate. Aphrodite est le meilleur choix pour maximiser les dégâts de l'attaque de base à courte portée.",
+                       en: "A formidable melee weapon. Prioritize backstab damage with Hecate's immobilization spell. Aphrodite is the best choice to maximize close-range basic attack damage." },
       },
       {
         id: "lames-artemis",
@@ -216,6 +225,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Powerful critical strikes — rewards precision."         },
         unlockHint:  { fr: "Parler à Artémis + 5 Psy",
                        en: "Speak to Artemis + 5 Psyche"                           },
+        solution:    { fr: "La mécanique de 'Parade' (Riposte) demande du timing. Chargez votre attaque Oméga juste avant que l'ennemi ne frappe pour absorber le coup et infliger des dégâts critiques massifs. Très efficace contre les boss aux attaques prévisibles comme Hécate ou le Cyclope.",
+                       en: "The Parry (Riposte) mechanic demands timing. Charge your Omega attack just before the enemy strikes to absorb the hit and deal massive critical damage. Very effective against bosses with predictable attacks like Hecate or the Cyclops." },
       },
       {
         id: "lames-pan",
@@ -224,6 +235,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Wild nature's force — every hit shakes the ground."     },
         unlockHint:  { fr: "Rencontrer Pan + 6 Psy",
                        en: "Meet Pan + 6 Psyche"                                   },
+        solution:    { fr: "Le build 'Mitrailleuse'. Lancez votre cercle magique (Cast) sur un ennemi, reculez, et spammez votre Technique Oméga. Tous les couteaux vont traquer la cible. Avec le bienfait de technique de Poséidon, vous nettoierez les salles en quelques secondes.",
+                       en: "The 'Machine Gun' build. Cast your magic circle on an enemy, back away, and spam your Omega Special. All knives will track the target. With Poseidon's Special boon, you'll clear rooms in seconds." },
       },
     ],
   },
@@ -240,6 +253,8 @@ export const weapons: HadesWeapon[] = [
         id: "flammes-melinoe",
         name:        { fr: "Aspect de Mélinoé",   en: "Aspect of Melinoë"          },
         description: { fr: "Forme de base.",       en: "Base form."                 },
+        solution:    { fr: "Le placement est la clé. Ne restez jamais immobile. Tournez autour des ennemis en maintenant le bouton d'attaque enfoncé. Les bienfaits d'Hestia (Brûlure) ou de Déméter (Gel) sont parfaits pour contrôler la foule.",
+                       en: "Positioning is key. Never stand still. Circle around enemies while holding the attack button. Hestia (Scorch) or Demeter (Freeze) boons are perfect for crowd control." },
       },
       {
         id: "flammes-moros",
@@ -248,6 +263,8 @@ export const weapons: HadesWeapon[] = [
                        en: "Titan's blazing trail — extended burning DoT."         },
         unlockHint:  { fr: "Découvrir Moros + 7 Psy",
                        en: "Discover Moros + 7 Psyche"                             },
+        solution:    { fr: "Cet aspect transforme vos attaques en bombes à retardement. Tirez vos flammes (Technique) puis frappez-les avec votre Attaque de base pour déclencher une énorme explosion. Un gameplay technique mais aux dégâts de zone dévastateurs.",
+                       en: "This aspect turns your attacks into delayed bombs. Fire your flames (Special) then hit them with your basic Attack to trigger a massive explosion. Technical gameplay but with devastating area damage." },
       },
       {
         id: "flammes-eos",
@@ -403,6 +420,8 @@ export const prophecies: HadesProphecy[] = [
                    en: "Defeat Chronos for the first time."                                  },
     reward:      { fr: "20 Gold + trophée de parcours",
                    en: "20 Gold + run trophy"                                                },
+    walkthrough: { fr: "La clé du combat est la patience. Ne dashez jamais 'au hasard' car la zone de combat est petite. Équipez un bienfait de Sprint (comme celui d'Apollon ou Hephaïstos) pour fuir facilement ses immenses attaques d'aspiration. Ses attaques de zone (faux) infligent d'énormes dégâts : quand l'écran s'assombrit, trouvez immédiatement la zone de lumière pour survivre.",
+                   en: "Patience is the key to this fight. Never dash randomly — the arena is small. Equip a Sprint boon (like Apollo's or Hephaestus's) to escape his massive vacuum attacks. His scythe area attacks deal enormous damage: when the screen darkens, immediately find the light zone to survive." },
   },
   {
     id: "prop-narrateur",
@@ -427,6 +446,39 @@ export const prophecies: HadesProphecy[] = [
     reward:      { fr: "Lore World-building exclusif", en: "Exclusive world-building lore" },
     walkthrough: { fr: "Explorez minutieusement les salles du Tartare (domaine de Chronos). Regardez les murs et le décor en arrière-plan — le tableau n'est pas interactif mais visible dans certaines chambres.",
                    en: "Carefully explore Tartarus rooms (Chronos's domain). Examine walls and background scenery — the painting isn't interactive but is visible in certain chambers." },
+  },
+  {
+    id: "prop-reach-surface",
+    category: "main",
+    title:       { fr: "Atteindre la Surface",                en: "Reach the Surface"                },
+    description: { fr: "Briser le sceau et atteindre la surface pour la première fois.",
+                   en: "Break the seal and reach the surface for the first time."              },
+    reward:      { fr: "Accès à la voie de la Surface",
+                   en: "Access to the Surface path"                                            },
+    walkthrough: { fr: "Pour survivre à la malédiction de la surface, vous devez accomplir l'incantation spécifique dans le Chaudron. Faites quelques 'runs suicides' à la surface juste pour récolter de la Mousse et du Fer en vitesse, puis mourez. Une fois l'incantation lancée, la voie est libre.",
+                   en: "To survive the surface curse, you must complete the specific incantation in the Cauldron. Do a few 'suicide runs' to the surface just to quickly harvest Moss and Iron, then die. Once the incantation is cast, the path is clear." },
+  },
+  {
+    id: "prop-master-nocturnal",
+    category: "main",
+    title:       { fr: "Maîtriser les Armes Nocturnes",       en: "Master the Nocturnal Arms"        },
+    description: { fr: "Compléter une run victorieuse avec chaque Arme Nocturne.",
+                   en: "Complete a victorious run with each Nocturnal Arm."                    },
+    reward:      { fr: "Aspect secret débloqué",
+                   en: "Secret aspect unlocked"                                                },
+    walkthrough: { fr: "Pour valider cette prophétie facilement, faites des runs à 0 Chaleur en vous concentrant uniquement sur la survie (bienfaits d'Aphrodite pour la santé, Déméter pour le contrôle). N'hésitez pas à utiliser la carte de Tarot 'L'Amant' pour des boucliers gratuits dans les salles de boss.",
+                   en: "To complete this prophecy easily, do 0 Heat runs focusing only on survival (Aphrodite boons for health, Demeter for control). Don't hesitate to use the 'Lover' Arcana card for free shields in boss rooms." },
+  },
+  {
+    id: "prop-defeat-eris",
+    category: "main",
+    title:       { fr: "Vaincre Éris",                        en: "Defeat Eris"                      },
+    description: { fr: "Vaincre Éris, Déesse de la Discorde, pour la première fois.",
+                   en: "Defeat Eris, Goddess of Discord, for the first time."                 },
+    reward:      { fr: "Progression de la voie de la Surface",
+                   en: "Surface path progression"                                              },
+    walkthrough: { fr: "Éris utilise des armes à feu à distance. Mettez-vous à l'abri derrière les piliers de la zone lorsqu'elle tire en rafale. Son point faible est son rechargement : dashez au corps-à-corps à ce moment précis pour lui infliger un maximum de dégâts avant de vous remettre à couvert.",
+                   en: "Eris uses ranged firearms. Take cover behind the arena pillars when she fires in bursts. Her weak point is her reload: dash into melee at that exact moment to deal maximum damage before getting back to cover." },
   },
 ];
 
@@ -469,6 +521,27 @@ export const incantations: HadesIncantation[] = [
 ];
 
 // ─── Heat / Pact of Punishment milestones ─────────────────────────────────────
+
+export interface HeatGuide {
+  id:       string;
+  title:    BiText;
+  solution: BiText;
+}
+
+export const heatGuides: HeatGuide[] = [
+  {
+    id: "heat-guide-low",
+    title:    { fr: "Chaleur 1 à 8",  en: "Heat 1 to 8"  },
+    solution: { fr: "Pour vos premières montées en chaleur, activez les Vœux qui augmentent légèrement la vie des ennemis ou le coût de la boutique de Charon. Évitez absolument le Vœu qui accélère la vitesse d'attaque des ennemis (Vœu de Fureur), il casse les timings d'esquive.",
+               en: "For your first heat increases, activate Vows that slightly raise enemy health or Charon's shop costs. Absolutely avoid the Vow that speeds up enemy attacks (Vow of Fury) — it breaks dodge timings." },
+  },
+  {
+    id: "heat-guide-high",
+    title:    { fr: "Chaleur 16 à 24", en: "Heat 16 to 24" },
+    solution: { fr: "À ce stade, vous devez avoir un build optimal en tête avant même de commencer. Le Vœu limitant votre Magie maximale est gérable si vous jouez un build centré sur les attaques de base. Utilisez systématiquement vos Refus de la Mort et abusez des cercles d'immobilisation pour contrôler le terrain.",
+               en: "At this stage, you must have an optimal build in mind before even starting. The Vow limiting your max Magick is manageable if you play a basic-attack-focused build. Systematically use your Death Defiances and abuse immobilization circles to control the field." },
+  },
+];
 
 const HEAT_LEVELS = [1, 4, 8, 16, 24] as const;
 

@@ -60,7 +60,7 @@ export function HadesDetail({ item, open, onOpenChange, completed, onToggleCompl
   const hasSolution =
     (item.kind === "prophecy"    && !!item.data.walkthrough) ||
     (item.kind === "incantation" && !!item.data.how_to)      ||
-    (item.kind === "aspect"      && (!!item.data.unlockHint || !!item.weapon.masterGuide));
+    (item.kind === "aspect"      && (!!item.data.unlockHint || !!item.data.solution || !!item.weapon.masterGuide));
 
   const tabs: { id: DrawerTab; labelFr: string; labelEn: string; icon: React.ReactNode }[] = [
     { id: "details",  labelFr: "D\u00e9tails",  labelEn: "Details",     icon: <Trophy   className="h-3.5 w-3.5" /> },
@@ -227,6 +227,14 @@ export function HadesDetail({ item, open, onOpenChange, completed, onToggleCompl
                 )}
                 {item.kind === "aspect" && (
                   <>
+                    {item.data.solution && (
+                      <div className="rounded-xl p-4 bg-slate-800/50 border border-slate-700/50">
+                        <p className="text-xs font-black uppercase tracking-widest mb-3 text-cyan-400">
+                          \uD83C\uDFAE {lang === "fr" ? "Guide & Strat\u00e9gie" : "Guide & Strategy"}
+                        </p>
+                        <p className="text-sm leading-relaxed text-slate-300">{l(item.data.solution)}</p>
+                      </div>
+                    )}
                     {item.data.unlockHint && (
                       <div className="rounded-xl p-4 bg-slate-800/50 border border-slate-700/50">
                         <p className="text-xs font-black uppercase tracking-widest mb-2 text-cyan-400">
