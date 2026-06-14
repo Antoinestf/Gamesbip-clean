@@ -58,7 +58,6 @@ export const GAME_REGISTRY: GameMeta[] = [
   {
     id: "re-requiem",
     title: "Resident Evil Requiem",
-    slug: "/re-requiem",
     coverImage: "/resident.webp",//
     progress: 0,
     isNew: true,
