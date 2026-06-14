@@ -55,6 +55,17 @@ export const GAME_REGISTRY: GameMeta[] = [
     tagline: { fr: "Terres Interm\u00e9diaires \u2014 Guide Complet", en: "Lands Between \u2014 Full Guide" },
     badge:   { fr: "Actif",                                      en: "Active"                    },
   },
+  {
+    id:         "re-requiem",
+    title:      "Resident Evil Requiem",
+    subtitle:   "Resident Evil Requiem",
+    year:       "2025",
+    platform:   "PS5 / Xbox / PC",
+    storageKey: "gamesbip_rerequiem_progress",
+    status:     "active",
+    tagline: { fr: "Guide de survie complet",  en: "Full Survival Guide"  },
+    badge:   { fr: "Nouveau",                  en: "New"                  },
+  },
 ];
 
 export function getGameMeta(id: string): GameMeta | undefined {

@@ -12,7 +12,7 @@ import { useLanguage } from "@/lib/language-context";
 import { LangToggle } from "@/components/lang-toggle";
 import { cn } from "@/lib/utils";
 
-type GameView = "home" | "gta5" | "hades2" | "sts2" | "eldenring" | "dashboard";
+type GameView = "home" | "gta5" | "hades2" | "sts2" | "eldenring" | "re-requiem" | "dashboard";
 
 interface HomeScreenProps {
   onSelectGame: (view: GameView) => void;
@@ -29,6 +29,7 @@ const GAME_COVERS: Record<string, string> = {
   hades2: "/hades.avif",
   sts2:   "/sts.webp",
   eldenring: "/eldenring.webp",
+  "re-requiem": "/images/re-requiem-cover.jpg",
 };
 
 export function HomeScreen({ onSelectGame }: HomeScreenProps) {
@@ -178,7 +179,12 @@ export function HomeScreen({ onSelectGame }: HomeScreenProps) {
                   {/* Year + badge */}
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono text-slate-500">{game.year}</span>
-                    <span className="rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide bg-cyan-900/50 text-cyan-400 border border-cyan-700/50">
+                    <span className={cn(
+                      "rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide border",
+                      badge === "Nouveau" || badge === "New"
+                        ? "bg-emerald-900/50 text-emerald-400 border-emerald-700/50"
+                        : "bg-cyan-900/50 text-cyan-400 border-cyan-700/50"
+                    )}>
                       {badge}
                     </span>
                   </div>
